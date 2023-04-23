@@ -1,0 +1,49 @@
+{
+    "All": "الكل",
+    "Add": "إضافة",
+    "Show": "عرض",
+    "Add & Edit": "إضافة & تعديل",
+    "Edit": "تعديل",
+    "Delete": "حذف",
+    "Save": "حفظ",
+    "Client Language": "لغة العميل",
+
+
+
+    "Name": "الإسم",
+    "Email": "البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "Password Confirmation": "تاكيد كلمة المرور",
+    "Actions": "العمليات",
+    "Search": "بحث",
+
+
+    "Are you sure about this process": "هل انت متاكد من هذه العملية",
+    "Cancel": "الغاء",
+    "Accept": "موافق",
+
+    "Control Panel Admins": "مستخدمي اللوحة",
+    "Control Panel": "لوحة التحكم",
+    "Home": "الرئيسية",
+    "Admins": "المديرين",
+    "Users": "المستخدمين",
+    "Permissions": "الصلاحيات",
+
+
+
+    "Site Constants": "إعدادات وثوابت الموقع",
+    "Settings": "الإعدادات",
+    "Site Logo": "شعار الموقع",
+    "Site Name": "اسم الموقع",
+
+
+    "Currencies": "العملات",
+    "Manage Currencies": "إدارة العملات",
+    "Currency Name": "إسم العملة",
+    "Currency Sub Name": "إسم العملة الفرعي",
+
+
+    "Vouchers" : "سندات القبض",
+    "Check NO." : "رقم الشيك",
+    "Check Bank" : "بنك الشيك"
+}

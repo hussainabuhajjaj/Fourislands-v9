@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap');
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: 'Tajawal', sans-serif !important;
+    letter-spacing: normal;
+}
+
+.ml-auto {
+    margin-right: auto!important;
+    margin-left: 0!important;
+}
+
+.text-left {
+    text-align: right!important;
+}
+
+.text-right {
+    text-align: left!important;
+}
+
+.owl-nav {
+    right: auto;
+    left: 12%;
+}
+
+.services .item .line:after {
+    right: 0;
+    left: auto;
+}
+
+b {
+    display: inline-block;
+}
+
+@media (min-width: 768px){
+    .offset-md-1 {
+        margin-right: 8.333333%;
+        margin-left: 0%;
+    }
+}
+
+.ti-arrow-right:before {
+    content: "\e629";
+}
+ h1,h2,h3,h4,h5,h6 , p,a{
+     letter-spacing: normal !important;
+
+ }
+
+

@@ -1,0 +1,76 @@
+
+*{
+    font-family: 'Cairo', sans-serif;
+}
+/*.bootstrap-select .dropdown-toggle .filter-option{*/
+/*    text-align: right!important;*/
+/*}*/
+#kt_datepicker_1-error{
+    display: none!important;
+}
+#kt_datepicker_2-error{
+    display: none!important;
+}
+.kt-notification .kt-notification__item:after {
+    border: 0;
+    font-family: "LineAwesome";
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    content: "";
+    padding-right: 10px;
+    transform: rotate(180deg);
+    font-size: 0.8rem;
+    line-height: 0;
+    position: relative;
+    color: #74788d;
+}
+
+
+fieldset{
+    padding: 20px!important;
+    border: 1px solid #ebedf2!important;
+    margin-bottom: 50px
+}
+
+legend {
+    width: 0%;
+}
+
+legend label{
+    background: #FFF;
+    display: block
+}
+
+fieldset .m-checkbox>span.first{
+    background: #FFF;
+    right: -21px;
+    top: -6px;
+}
+
+fieldset .kt-checkbox>span.first {
+    background: #FFF;
+    right: -21px;
+    top: -6px;
+}
+
+/*Tags */
+
+div.tagsinput div {
+    float: left;
+}
+div.tagsinput{
+    width: 100% !important;
+    border-radius: 5px;
+    border: 1px solid #e2e5ec;
+}
+div.tagsinput span.tag {
+    border: 1px solid #27d36b;
+    float: left;
+    background: #27d36b;
+}
+
+/*End Tags*/

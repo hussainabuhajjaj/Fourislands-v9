@@ -1,0 +1,105 @@
+{
+    "Users": "Users",
+    "All": "All",
+    "Add": "Add",
+    "Show": "Show",
+    "Add & Edit": "Add & Edit",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "created_at": "Created At",
+    "ID": "ID",
+    "No Result": "No Result Founded",
+
+    "Name": "Name",
+    "Title": "Title",
+    "Content": "Content",
+    "Description": "Description",
+    "Email": "Email",
+    "Password": "Password",
+    "Password Confirmation": "Password Confirmation",
+    "Actions": "Actions",
+    "Search": "Search",
+
+
+    "Catagories": "Catagories",
+    "Parent Catagory Name": "Parent Catagory Name",
+    "Parent Catagory": "Parent Catagory",
+    "choose_catagory": "Please choose catagory",
+    "visible": "Is Visible ?",
+
+    "Products": "Products",
+    "Sizes": "Sizes",
+    "Size Name": "Size Name",
+    "Images": "Images",
+    "Main Image": "Main Image",
+    "Price": "Price",
+    "Discount": "Discount Percentage",
+    "Available Quantity": "Available Quantity",
+    "quantity": "Quantity",
+    "featured": "Is Featured?",
+    "numOfSale": "Number Of Sale",
+    "numOfViews": "Number Of View",
+    "choose_product": "Please choose products",
+
+
+
+    "Advertisement": "Advertisement",
+
+
+    "Faqs": "FAQs",
+    "question": "Question",
+    "answer": "Answer",
+
+    "Slider": "Slider",
+
+
+    "Brands": "Brands",
+
+    "Featured products": "Featured products",
+    "Shop By Categories": "Shop By Categories",
+    "Our Categories": "Our Categories",
+    "View All": "View All",
+    "Login": "Sign In",
+    "Username or email": "Username or E-mail",
+    "forget_password": "Lost your password?",
+    "Remember me": "Remember me",
+    "Sign Up": "Register",
+    "Sign Up Now": "Register Now",
+    "User Name": "User Name",
+    "Mobile": "Mobile",
+    "Verify": "Verify",
+    "Sign Out": "Sign Out",
+    "Account": "Profile",
+    "Account details": "Account Details",
+    "Account Password": "Account Password",
+
+    "Home": "Home",
+    "Shop": "Shop",
+
+    "Shipping Address"   : "Shipping Address",
+    "fname"   : "First Name",
+    "lname"   : "Last Name",
+    "country"   : "Country",
+    "payment_address"   : "Payment Address",
+    "address"   : "Address",
+    "postal_code"   : "Postal Code",
+    "city"   : "City",
+
+
+    "product details": "Product Details",
+    "Wishlist": "Wish List",
+    "Cart": "Cart",
+
+    "faqs": "FAQs",
+    "Contact Us": "Contact Us",
+    "Website Pages": "Website Pages",
+    "Contact Messages": "Contact Messages",
+
+    "share": "Share",
+    "tweet": "Tweet",
+    "send": "Send",
+    "": "",
+    "": ""
+
+}
