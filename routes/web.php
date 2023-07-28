@@ -12,19 +12,27 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Front\FrontController;
+
+use App\Http\Controllers\Front\NewsletterController;
+
 Route::get('image/{folder}/{path}/{size?}', 'MediaController@photo');
+Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter', function () {
+    return view('welcome');
+});
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' =>
-    ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+
 
     Route::group(['namespace' => 'App\Http\Controllers\Front', 'as' => 'home.'], function () {
 
 
         Route::get('/', 'FrontController@home')->name('home');
         Route::get('notification', 'FrontController@notification');
+        Route::get('/send-welcome-mail','MailController@sendNewsletter');
 
         Route::get('/about', 'AboutController@Index');
 
