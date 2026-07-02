@@ -84,8 +84,8 @@
     <script src={{asset('panelAssets/js/data-ajax.js')}}  type="text/javascript"></script>
 
 
-    <script>$("[data-fancybox]").fancybox({});</script>
     <script src="{{asset('/panelAssets/js/fancybox.min.js')}}"></script>
+    <script>$("[data-fancybox]").fancybox({});</script>
     <script>
 
 
@@ -130,7 +130,7 @@
                                 <i class="la la-cog"></i>
                             </a>
 						  	<div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="` + editUrl + `"><i class="la la-edit"></i> @lang('trasnlate.edit') </a>
+                                    <a class="dropdown-item" href="` + editUrl + `"><i class="la la-edit"></i> @lang('translate.edit') </a>
                                     <a class="dropdown-item delete" href="#" data-url="` + deleteUrl + `"><i class="la la-times"></i> @lang('translate.delete') </a>
 						  	</div>
 						</div>`;

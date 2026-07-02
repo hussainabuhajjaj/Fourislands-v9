@@ -118,9 +118,11 @@ class PromotionalEmailController extends Controller
         return $this->response_api(true, __('front.Success'), StatusCodes::OK);
     }
 
-    public function update()
+    public function update($id)
     {
-        return view();
+        $data['title'] = __('Update Email Template');
+        $data['item'] = PromotionalEmail::findOrFail($id);
+        return view('panel.promotional-email.create', $data);
     }
 
 }

@@ -91,7 +91,7 @@
                 title: "العنوان",
                 textAlign: "center",
                 template: function (data) {
-                    return data.name? data.name : '-';
+                    return data.subject ? data.subject : '-';
                 },
             },  {
                 field: 'message',
@@ -107,8 +107,8 @@
                 autoHide: false,
                 width: 100,
                 template: function (data) {
-                    var editUrl = "{{ url('panel/admins/') }}/" + data.id + "/edit";
-                    var deleteUrl = "{{ url('panel/admins/') }}/" + data.id;
+                    var editUrl = "{{ url('panel/promotional-emails/') }}/" + data.id + "/edit";
+                    var deleteUrl = "{{ url('panel/promotional-emails/') }}/" + data.id;
                     return `
                         <input value=` + data.id + ` type="hidden" class="id">
 						<div class="dropdown">

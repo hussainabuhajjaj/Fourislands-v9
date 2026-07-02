@@ -23,9 +23,9 @@
         $item = isset($item) ? $item: null;
     @endphp
 
-    {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
-
+    <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.partners.index') }}">
     @csrf
+    @if(isset($item)) @method('PUT') @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -91,7 +91,7 @@
 
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 
 @endsection
 
@@ -112,9 +112,7 @@
 
 
 
-        jQuery(document).ready(function () {
-            KTFormControls.init();
-        });
+
 
 
 

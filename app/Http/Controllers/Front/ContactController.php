@@ -15,13 +15,17 @@ class ContactController extends Controller
     public function index()
     {
         $data['settings'] = Setting::all();
-        $data['branches'] =  Address::all();
+        $data['branches'] =  Address::translatedIn(app()->getLocale())->get();
         return view('frontend.contact',$data);
     }
 
     public function store(ContactRequest  $request)
     {
-        Contact::create($request->all());
+        if ($request->filled('company_website')) {
+            return $this->response_api(true, __('front.msgSent'), StatusCodes::OK);
+        }
+
+        Contact::create($request->only(['name', 'email', 'phone', 'subject', 'message']));
         return $this->response_api(true , __('front.msgSent') , StatusCodes::OK);
     }
 

@@ -23,9 +23,9 @@
         $item = isset($item) ? $item: null;
     @endphp
 
-    {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
-
+    <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.addresses.index') }}">
     @csrf
+    @if(isset($item)) @method('PUT') @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -138,7 +138,7 @@
 
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 
 @endsection
 
@@ -156,58 +156,6 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-
-        var KTFormControls = function () {
-            // Private functions
-
-            var demo1 = function () {
-                $("#form").validate({
-                    // define validation rules
-                    rules: {
-                        name: {
-                            required: true,
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 6
-                        },
-                        password_confirmation: {
-                            required: true,
-                            equalTo: "#password",
-                        },
-                    },
-
-                    //display error alert on form submit
-                    invalidHandler: function (event, validator) {
-                        var alert = $('#kt_form_1_msg');
-                        alert.removeClass('kt--hide').show();
-                    },
-
-                    submitHandler: function (form) {
-                        form[0].submit(); // submit the form
-                    }
-                });
-            };
-
-
-            return {
-                // public functions
-                init: function () {
-                    demo1();
-                }
-            };
-        }();
-
-        jQuery(document).ready(function () {
-            KTFormControls.init();
-        });
-
-
-
 
     </script>
 

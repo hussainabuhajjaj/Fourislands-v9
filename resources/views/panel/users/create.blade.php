@@ -23,9 +23,9 @@
         $item = isset($item) ? $item: null;
     @endphp
 
-    {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
-
+    <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.users.index') }}">
     @csrf
+    @if(isset($item)) @method('PUT') @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 
 @endsection
 
@@ -91,24 +91,10 @@
                             required: true,
                             email: true
                         },
-                        password: {
-                            required: true,
-                            minlength: 6
-                        },
-                        password_confirmation: {
-                            required: true,
-                            equalTo: "#password",
-                        },
-                    },
-
-                    //display error alert on form submit
-                    invalidHandler: function (event, validator) {
-                        var alert = $('#kt_form_1_msg');
-                        alert.removeClass('kt--hide').show();
                     },
 
                     submitHandler: function (form) {
-                        form[0].submit(); // submit the form
+                        form[0].submit();
                     }
                 });
             };

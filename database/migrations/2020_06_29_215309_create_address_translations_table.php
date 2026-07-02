@@ -20,7 +20,7 @@ class CreateAddressTranslationsTable extends Migration
             $table->string('city');
             $table->string('address');
             $table->unique(['address_id','locale']);
-            $table->foreign('address_id')->references('id')->on('pages')->onDelete('cascade');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
     }
 

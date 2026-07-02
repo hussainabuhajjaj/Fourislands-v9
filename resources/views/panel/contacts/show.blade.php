@@ -84,7 +84,8 @@ Reply                        </h3>
                     </div>
                 </div>
                 <div class="kt-portlet__body">
-                    {!! Form::open(['method'=> 'POST', 'url'=> route('panel.contacts.replay') ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
+                    <form method="POST" action="{{ route('panel.contacts.replay') }}" class="form-horizontal" id="form" to="{{ route('panel.contacts.index') }}">
+                    @csrf
                     <input type="hidden" name="contact_id" value="{{ $contact->id }}">
                     <div class="kt-portlet__body">
                             <div class="form-group row">
@@ -100,7 +101,7 @@ Reply                        </h3>
                                 </div>
                             </div>
                         </div>
-                    {!! Form::close() !!}
+                    </form>
 
                 </div>
             </div>
@@ -127,23 +128,20 @@ Reply                        </h3>
             // Private functions
 
             var demo1 = function () {
-                $( "#kt_form_1" ).validate({
-                    // define validation rules
+                $( "#form" ).validate({
                     rules: {
                         message: {
                             required: true,
                         },
                     },
 
-                    //display error alert on form submit
                     invalidHandler: function(event, validator) {
                         var alert = $('#kt_form_1_msg');
                         alert.removeClass('kt--hide').show();
-                        // KTUtil.scrollTop();
                     },
 
                     submitHandler: function (form) {
-                        form[0].submit(); // submit the form
+                        form[0].submit();
                     }
                 });
             }

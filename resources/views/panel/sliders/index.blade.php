@@ -85,8 +85,6 @@
 
     <script>
 
-        $("[data-fancybox]").fancybox({});
-
         window.data_url = '{{url('panel/sliders/datatable')}}';
 
         window.columns = [

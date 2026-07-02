@@ -35,6 +35,6 @@ class MailController extends Controller
 
         $mailchimp->campaigns->send($campaign['id']);
 
-        return redirect()->back()->with('success', 'Campaign sent successfully.');
+        return redirect()->back()->with('success', 'The email campaign has been sent successfully to all subscribers.');
     }
 }

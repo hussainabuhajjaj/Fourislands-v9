@@ -9,8 +9,11 @@ class PermissionsSeeder extends Seeder
 {
     public function run()
     {
+        // Create admin role if it doesn't exist
+        $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'admin']);
+
         // Define permissions based on database tables
-        $tables = ['users', 'addresses', 'admins','businesses','cities','contacts','countries','pages','partners','products','promotional_emails','services','settings','sliders','users','permissions'];
+        $tables = ['admins', 'addresses', 'businesses', 'categories', 'cities', 'contacts', 'countries', 'faqs', 'pages', 'partners', 'posts', 'products', 'promotional-emails', 'quote-requests', 'services', 'settings', 'sliders', 'subscribers', 'testimonials', 'users'];
 
         foreach ($tables as $table) {
             // Check if permission already exists
@@ -25,9 +28,14 @@ class PermissionsSeeder extends Seeder
             $deletePermission = Permission::create(['name' => "delete_$table",'guard_name'=>'admin']);
 
             // Assign permissions to admin role
-            $adminRole = Role::where('name', 'admin')->first();
-            if ($adminRole) {
-                $adminRole->givePermissionTo([$addPermission, $editPermission, $showPermission, $deletePermission]);
+            $adminRole->givePermissionTo([$addPermission, $editPermission, $showPermission, $deletePermission]);
+        }
+
+        // Create custom permissions not following the standard prefix pattern
+        $customPermissions = ['manage_pages', 'manage_faqs', 'add_roles'];
+        foreach ($customPermissions as $name) {
+            if (!Permission::where('name', $name)->where('guard_name', 'admin')->exists()) {
+                $adminRole->givePermissionTo(Permission::create(['name' => $name, 'guard_name' => 'admin']));
             }
         }
     }

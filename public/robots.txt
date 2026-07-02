@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /panel
+Disallow: /admin
+Disallow: /storage
+
+Allow: /
+
+Sitemap: https://fourislands.net/sitemap.xml

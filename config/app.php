@@ -175,10 +175,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-//        BladeUIKit\Providers\BladeUIKitServiceProvider::class,
-
     ],
 
     /*
@@ -192,10 +188,6 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        'Form' => BladeUIKit\ComponentLibrary\Form::class,
-        'Input' => BladeUIKit\ComponentLibrary\Input::class,
-
-    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->toArray(),
 
 ];

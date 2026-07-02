@@ -22,9 +22,9 @@
         $item = isset($item) ? $item: null;
     @endphp
 
-    {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
-
+    <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.permission.index') }}">
     @csrf
+    @if(isset($item)) @method('PUT') @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 
 
 

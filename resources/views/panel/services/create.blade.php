@@ -23,9 +23,9 @@
         $item = isset($item) ? $item: null;
     @endphp
 
-    {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form']) !!}
-
+    <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.services.index') }}">
     @csrf
+    @if(isset($item)) @method('PUT') @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -72,7 +72,6 @@
                                         {{ isset($item) ? $item->getTranslation($key)->description : "" }}
                                     </textarea>
                                 </div>
-
                             </div>
 
                             @php $i++; @endphp
@@ -86,6 +85,20 @@
         <div class="col-lg-4">
             <div class="kt-portlet">
                 <div class="kt-portlet__body">
+                    <div class="form-group">
+                        <label>Icon Class</label>
+                        <input class="form-control m-input" type="text" name="icon" placeholder="e.g. fas fa-cogs" value="{{ isset($item) ? $item->icon : '' }}">
+                        <span class="form-text text-muted">Font Awesome icon class (e.g. fas fa-cogs, fas fa-truck)</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Short Description</label>
+                        <textarea class="form-control m-input" name="short_description" rows="2" placeholder="Brief excerpt for card preview">{{ isset($item) ? $item->short_description : '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Features (one per line)</label>
+                        <textarea class="form-control m-input" name="features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">{{ isset($item) && $item->features ? implode("\n", $item->features) : '' }}</textarea>
+                        <span class="form-text text-muted">Each line becomes a bullet point on the service page</span>
+                    </div>
                     <div class="form-group">
                         <label>@lang('Image')</label>
                         <div class="custom-file">
@@ -118,7 +131,7 @@
 
                 </div>
             </div>
-   
+    
             <div class="kt-portlet">
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label" style="width: 100%;">
@@ -133,7 +146,7 @@
 
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 
 @endsection
 
@@ -153,58 +166,6 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-
-        var KTFormControls = function () {
-            // Private functions
-
-            var demo1 = function () {
-                $("#form").validate({
-                    // define validation rules
-                    rules: {
-                        name: {
-                            required: true,
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 6
-                        },
-                        password_confirmation: {
-                            required: true,
-                            equalTo: "#password",
-                        },
-                    },
-
-                    //display error alert on form submit
-                    invalidHandler: function (event, validator) {
-                        var alert = $('#kt_form_1_msg');
-                        alert.removeClass('kt--hide').show();
-                    },
-
-                    submitHandler: function (form) {
-                        form[0].submit(); // submit the form
-                    }
-                });
-            };
-
-
-            return {
-                // public functions
-                init: function () {
-                    demo1();
-                }
-            };
-        }();
-
-        jQuery(document).ready(function () {
-            KTFormControls.init();
-        });
-
-
-
 
     </script>
 

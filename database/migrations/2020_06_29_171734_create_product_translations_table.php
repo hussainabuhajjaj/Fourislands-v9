@@ -21,7 +21,7 @@ class CreateProductTranslationsTable extends Migration
             $table->string('title');
 
             $table->unique(['product_id','locale']);
-            $table->foreign('product_id')->references('id')->on('pages')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

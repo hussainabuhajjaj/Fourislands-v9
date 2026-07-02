@@ -28,7 +28,7 @@
 
                     <div class="tab-content">
                         <form id="form" action="{{ route('panel.promotional-emails.store') }}" method="post"
-                              enctype="multipart/form-data">
+                              enctype="multipart/form-data" to="{{ route('panel.promotional-emails.index') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="subject">Subject</label>
@@ -82,77 +82,7 @@
                     </div>
                 </div>
 
-                {{-- @php
-                    $item = isset($item) ? $item: null;
-                @endphp
 
-                {!! Form::open(['method'=>isset($item) ? 'PUT' : 'POST', 'url'=> url()->current() ,'to'=>url()->current() ,  'class'=>'form-horizontal','id'=>'form', 'enctype' => 'multipart/form-data']) !!}
-
-                @csrf
-                <div class="row">
-
-                    <div class="col-md-8">
-                        <div class="kt-portlet kt-portlet--tabs">
-
-                            <div class="kt-portlet__body">
-
-                                <div class="tab-content">
-                                    @php $i=1; @endphp
-                                    @foreach(locales() as $key=>$language)
-
-                                        <div class="tab-pane {{$i==1?'active':''}}" id="kt_tabs_{{$i}}" role="tabpanel">
-
-
-                                            <div class="form-group">
-                                                <label>Subject</label>
-                                                <input class="form-control m-input" type="text" name="subject"
-                                                       placeholder="Page Title" required value="{{ isset($item) ? $item->title : "" }}">
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Message</label>
-                                                <textarea class="summernote form-control" style="display:none!important;" id="kt_summernote_1"
-                                                          name="message" required placeholder="Message">{{ isset($item) ? $item->message : ""  }}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Attahcmnets</label>
-                                                <input class="form-control m-input" type="file" multiple name="attahcmnets[]"
-                                                       placeholder="Attachments"  value="">
-
-                                            </div>
-                                            <div class="form-group">
-
-                                                <label for="recipients">Recipients</label>
-                                                <select class="form-control kt-selectpicker" multiple="multiple" id="recipients" name="recipients[]">
-                                                    @foreach($users as $user)
-                                                    <option value="{{ $user->email }}">{{ $user->name }} ({{ $user->email }})</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        @php $i++; @endphp
-
-                                    @endforeach
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="kt-portlet">
-                            <div class="kt-portlet__head">
-                                <div class="kt-portlet__head-label" style="width: 100%;">
-                                    <button type="submit" style="width: 100%;" id="m_login_signin_submit" class="btn btn-brand">
-                                        Send
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {!! Form::close() !!} --}}
 
                 @endsection
 

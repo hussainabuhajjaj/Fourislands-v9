@@ -1,360 +1,175 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.css">
 @extends('frontend.layouts.master')
+
+@section('page_title', __('translate.contact_us'))
+@section('meta_desc', __('translate.contact_desc'))
+
+@push('front_css')
+    <style>
+        .marker { background-image: url('{{ asset('pin.png') }}'); background-size: cover; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; }
+        .mapboxgl-popup { max-width: 200px; }
+        .mapboxgl-popup-content { text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+@endpush
+
 @section('content')
-    <style>
-        #mapBox {
-            position: static;
-            width: 100%;
-        }
-    </style>
-    <style>
-        .marker {
-            background-image: url('{{asset('pin.png')}}');
-            background-size: cover;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+    <section class="relative pt-28 sm:pt-36 pb-16 sm:pb-20 bg-cover bg-center" data-background="{{ asset('NewFront/img/1.jpg') }}">
+        <div class="absolute inset-0 bg-gradient-to-br from-navy-900/90 via-navy-900/70 to-navy-900/60"></div>
+        <div class="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">@lang('translate.contact_us')</h1>
+            <nav aria-label="breadcrumb" class="text-sm">
+                <a href="{{ route('home.home') }}" class="text-white/55 hover:text-gold-500 transition-colors">@lang('translate.home')</a>
+                <span class="text-white/30 mx-2">/</span>
+                <span class="text-gold-500">@lang('translate.contact')</span>
+            </nav>
+        </div>
+    </section>
 
-        .mapboxgl-popup {
-            max-width: 200px;
-        }
-
-        .mapboxgl-popup-content {
-            text-align: center;
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
-    <!-- Lines -->
-    {{--<section class="content-lines-wrapper">--}}
-    {{--    <div class="content-lines-inner">--}}
-    {{--        <div class="content-lines"></div>--}}
-    {{--    </div>--}}
-    {{--</section>--}}
-    <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-light="1"
-             data-background="{{asset('NewFront/img/1.jpg')}}"></section>
-
-      <section class="testimonials section-padding2">
-        <div class="container">
-            <div class="row">
-                @if(app()->getLocale() == "ar")
-                    <h2 class="section-title">عناويـ <span>ـننا</span></h2>
-                @else
-                    <h2 class="section-title">Our <span>Branches</span></h2>
-                @endif
+    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="section-tag">@lang('translate.get_in_touch')</span>
+                <h2 class="section-title text-navy-950 dark:text-white">@lang('translate.contact_us')</h2>
+                <p class="section-desc mx-auto">@lang('translate.contact_desc')</p>
             </div>
-            <div class="row">
-                @if($branches != '' && $branches->count() > 0)
-                    @foreach($branches as $branch)
-                        <div class="col-md-4">
-                            <div class="item testimonials-box" style="background: #f4f4f4">
-                                <span class="quote"><img src="{{ url('image/' . $branch->image . '/200x200') }}" alt=""></span>
-{{--                                <p>Architect dapibus augue metus the nec feugiat erat hendrerit nec. Duis veante the--}}
-{{--                                    lemon sanleo nec feugiat erat hendrerit necuis veante. Design inilla duiman at elit--}}
-{{--                                    finibus viverra.</p>--}}
-                                <div class="info">
-                                    <div class="author-img"><img src="{{ url('image/' . $branch->image . '/200x200') }}" alt=""></div>
-                                    <div class="cont">
 
-                                        <h6>{{$branch->city}}</h6>
-                                        <span>{{$branch->address}}</span>
-                                    </div>
+            @if($branches && $branches->count() > 0)
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
+                    @foreach($branches as $branch)
+                        <div class="card p-6 sm:p-8 text-center hover:border-sky-200 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mx-auto mb-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">{{ $branch->city }}</h6>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ $branch->address }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
+                <div>
+                    <div class="card p-6 sm:p-8">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.phone')</h6>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">{{ getSetting('phone') ?: '+965 123 456 789' }}</p>
+                    </div>
+                    <div class="card p-6 sm:p-8 mt-4">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.email')</h6>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">{{ getSetting('email') ?: 'info@fourislands.com' }}</p>
+                    </div>
+                    <div class="card p-6 sm:p-8 mt-4">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.address')</h6>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">{{ getSetting('address') ?: 'Kuwait - Qibla' }}</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="card p-6 sm:p-8">
+                        <form id="contactForm" method="post" action="{{ route('home.contacts.store') }}">
+                            @csrf
+                            <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                                <label for="contact_company_website">Company website</label>
+                                <input id="contact_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <input type="text" name="name" class="form-input" placeholder="@lang('translate.full_name')" required>
+                                </div>
+                                <div>
+                                    <input type="text" name="phone" class="form-input" placeholder="@lang('translate.phone')">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <input type="email" name="email" class="form-input" placeholder="@lang('translate.email')" required>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <input type="text" name="subject" class="form-input" placeholder="@lang('translate.subject')">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <textarea name="message" class="form-input" rows="5" placeholder="@lang('translate.your_message')" required></textarea>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
-                        @endif
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Contact -->
-    <section class="section-padding2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
-                    @if(app()->getLocale() == 'ar')
-                        <h2 class="section-title">تواصل <span>معنا</span></h2>
-                    @else
-                        <h2 class="section-title">Contact <span>Us</span></h2>
-                    @endif
-                </div>
-            </div>
-            <div class="row mb-90">
-
-                <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    @if(app()->getLocale()=='ar')
-
-                        <p><b>تفاصيل التواصل</b></p>
-                    @else
-                        <p style="font-weight:700;">Contact Details</p>
-                    @endif
-                    <p><b>@lang('translate.phone') :</b> {{getSetting('phone')}}</p>
-                    <p><b>@lang('translate.email') :</b> {{getSetting('email')}}</p>
-{{--                    <p><b>@lang('translate.address'):</b> {{getSetting('address')}}</p>--}}
-                </div>
-                <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
-                    @if(app()->getLocale() == 'ar')
-                        <p><b>تواصل معنا</b></p>
-                    @else
-                        <p><b>Contact Us</b></p>
-                    @endif
-                    <form id="target" method="post" action="" class="row">
-                        @csrf
-
-
-                        <div class="col-md-12">
-                            <input type="text" name="name" id="name" placeholder="Full Name">
-                        </div>
-                        <div class="col-md-12">
-                            <input type="text" name="phone" id="phone" placeholder="phone">
-                        </div>
-                        <div class="col-md-12">
-                            <input type="email" name="email" id="email" placeholder="Your Email">
-                        </div>
-                        <div class="col-md-12">
-                            <input type="text" name="subject" id="subject" placeholder="subject">
-                        </div>
-                        <div class="col-md-12">
-                            <textarea name="message" id="message" cols="40" rows="4"
-                                      placeholder="Your Message"></textarea>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="butn-dark mt-15"><a><span>@lang('translate.send')</span></a></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- Map Section-->
-            <div class="row">
-                <div class="col-md-12 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <div id="bauen-contactMap"></div>
+                            <div id="contactSuccess" class="mt-4 hidden rounded-md border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-800">
+                                @lang('translate.msg_sent')
+                            </div>
+                            <button type="submit" class="btn-primary mt-4">
+                                @lang('translate.send_message')
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.27 3.13A59.78 59.78 0 0 1 21.49 12 59.77 59.77 0 0 1 3.27 20.87L6 12Zm0 0h7.5"/></svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.js"></script>
-    <script src="{{asset('panelAssets/js/post.js')}}"></script>
-    @push('front_js')
-        <script src="https://www.google.com/recaptcha/api.js"></script>
 
-        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <section class="pb-16 sm:pb-24 -mt-8 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="bauen-contactMap" class="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden"></div>
+        </div>
+    </section>
+@endsection
 
-        <script>
-            function resetForm() {
-                document.getElementById("target").reset();
-            }
-            $("#target").submit(function (event) {
+@push('front_js')
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var form = this, btn = form.querySelector('button[type="submit"]'), success = document.getElementById('contactSuccess');
+            btn.disabled = true; btn.innerHTML = '@lang("translate.sending")...';
+            success.classList.add('hidden');
+            fetch("{{ route('home.contacts.store') }}", {
+                method: "POST", body: new FormData(form),
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                form.reset();
+                success.textContent = d.message || d.msg || '@lang("translate.msg_sent")';
+                success.classList.remove('hidden');
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'lead_form_submit', form_name: 'contact' });
+            })
+            .catch(function() {
+                success.textContent = '@lang("translate.error_occurred")';
+                success.classList.remove('hidden', 'border-emerald-200', 'bg-emerald-50', 'text-emerald-800');
+                success.classList.add('border-red-200', 'bg-red-50', 'text-red-800');
+            })
+            .finally(function() { btn.disabled = false; btn.innerHTML = '@lang("translate.send_message") <svg class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.27 3.13A59.78 59.78 0 0 1 21.49 12 59.77 59.77 0 0 1 3.27 20.87L6 12Zm0 0h7.5"/></svg>'; });
+        });
 
-                event.preventDefault();
-
-                let name = $('#name').val();
-                let email = $('#email').val();
-                let mobile_number = $('#phone').val();
-                let subject = $('#subject').val();
-                let message = $('#message').val();
-
-                $.ajax({
-                    url: "{{route('home.contacts.store')}}",
-                    type: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        name: name,
-                        email: email,
-                        phone: mobile_number,
-                        subject: subject,
-                        message: message,
-                    },
-                    success: function (response) {
-                        resetForm();
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-
-                        Toast.fire({
-                            icon: 'success',
-                            title: response.message
-                        })
-                    },
-                    error: function (xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'center',
-                            showConfirmButton: true,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'warning',
-                            title: err.message
-                        })
-                    }
-
-                });
-
-
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaHVzc2FpbjE5OTMxNyIsImEiOiJja3FtbWNtODIwNGZjMnBucGV1cWpoYTE5In0.OePEbx6NBUzRLkTStHiy-g';
+        var map = new mapboxgl.Map({
+            container: 'bauen-contactMap',
+            style: 'mapbox://styles/mapbox/light-v10',
+            center: [47.4818, 29.3117],
+            zoom: 2
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+        map.on('load', function() {
+            map.addSource('points', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': [
+                        { 'type': 'Feature', 'properties': { 'title': 'Switzerland', 'description': 'Geneva' }, 'geometry': { 'type': 'Point', 'coordinates': [6.1432, 46.2044] } },
+                        { 'type': 'Feature', 'properties': { 'title': 'Kuwait', 'description': 'Qibla, Dawliya complex, office 61, Ground Floor' }, 'geometry': { 'type': 'Point', 'coordinates': [47.4818, 29.3117] } }
+                    ]
+                }
             });
-        </script>
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiaHVzc2FpbjE5OTMxNyIsImEiOiJja3FtbWNtODIwNGZjMnBucGV1cWpoYTE5In0.OePEbx6NBUzRLkTStHiy-g';
-
-            var map = new mapboxgl.Map({
-                container: 'bauen-contactMap',
-                style: 'mapbox://styles/mapbox/light-v10',
-                center: [-0.100, -0.60],
-                zoom: 2
+            map.addLayer({ 'id': 'circle', 'type': 'circle', 'source': 'points', 'paint': { 'circle-color': '#C5A35A', 'circle-radius': 8, 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' } });
+            map.on('click', 'circle', function(e) {
+                new mapboxgl.Popup().setLngLat(e.features[0].geometry.coordinates).setHTML('<h5>' + e.features[0].properties.title + '</h5><p>' + e.features[0].properties.description + '</p>').addTo(map);
+                map.flyTo({ center: e.features[0].geometry.coordinates });
             });
-            map.addControl(new mapboxgl.NavigationControl());
-            map.on('load', function () {
-                // Add a GeoJSON source with 3 points.
-                map.addSource('points', {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': [
-
-                            {
-                                'type': 'Feature',
-                                'properties': {},
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [6.1432, 46.2044]
-                                }
-                            },
-                            {
-                                'type': 'Feature',
-                                'properties': {
-                                    'title': 'Kuwait',
-                                    'description': 'Qibla, Dawliya complex, office 61, Ground Floor'
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': [47.4818, 29.3117]
-                                },
-
-                            }
-                        ]
-                    }
-                });
-                // Add a circle layer
-                map.addLayer({
-                    'id': 'circle',
-                    'type': 'circle',
-                    'source': 'points',
-                    'paint': {
-                        'circle-color': '#4264fb',
-                        'circle-radius': 8,
-                        'circle-stroke-width': 2,
-                        'circle-stroke-color': '#ffffff'
-                    }
-                });
-
-                // Center the map on the coordinates of any clicked circle from the 'circle' layer.
-                map.on('click', 'circle', function (e) {
-                    map.flyTo({
-                        center: e.features[0].geometry.coordinates
-                    });
-                });
-
-                // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
-                map.on('mouseenter', 'circle', function () {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-
-                // Change it back to a pointer when it leaves.
-                map.on('mouseleave', 'circle', function () {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-
-        </script>
-        {{--<script>--}}
-        {{--    // TO MAKE THE MAP APPEAR YOU MUST--}}
-        {{--    // ADD YOUR ACCESS TOKEN FROM--}}
-        {{--    // https://account.mapbox.com--}}
-        {{--    mapboxgl.accessToken = 'pk.eyJ1IjoiaHVzc2FpbjE5OTMxNyIsImEiOiJja3FtbWNtODIwNGZjMnBucGV1cWpoYTE5In0.OePEbx6NBUzRLkTStHiy-g';--}}
-
-        {{--    var geojson = {--}}
-        {{--        'type': 'FeatureCollection',--}}
-        {{--        'features': [--}}
-        {{--            {--}}
-        {{--                'type': 'Feature',--}}
-        {{--                'geometry': {--}}
-        {{--                    'type': 'Point',--}}
-        {{--                    'coordinates': [47.4818,29.3117]--}}
-        {{--                },--}}
-        {{--                'properties': {--}}
-        {{--                    'title': 'Kuwait',--}}
-        {{--                    'description': 'Qibla, Dawliya complex, office 61, Ground Floor'--}}
-        {{--                }--}}
-        {{--            },--}}
-        {{--            {--}}
-        {{--                'type': 'Feature',--}}
-        {{--                'geometry': {--}}
-        {{--                    'type': 'Point',--}}
-        {{--                    'coordinates': [6.1432, 46.2044]--}}
-        {{--                },--}}
-        {{--                'properties': {--}}
-        {{--                    'title': 'Switzerland',--}}
-        {{--                    'description': 'Geneva'--}}
-        {{--                }--}}
-        {{--            }--}}
-        {{--        ]--}}
-        {{--    };--}}
-
-        {{--    var map = new mapboxgl.Map({--}}
-        {{--        container: 'bauen-contactMap',--}}
-        {{--        style: 'mapbox://styles/mapbox/light-v9',--}}
-        {{--        center: [-60,60],--}}
-        {{--        zoom: 3--}}
-        {{--    });--}}
-
-        {{--    // add markers to map--}}
-        {{--    geojson.features.forEach(function (marker) {--}}
-        {{--// create a HTML element for each feature--}}
-        {{--        var el = document.createElement('div');--}}
-        {{--        el.className = 'marker';--}}
-
-        {{--// make a marker for each feature and add it to the map--}}
-        {{--        new mapboxgl.Marker(el)--}}
-        {{--            .setLngLat(marker.geometry.coordinates)--}}
-        {{--            .setPopup(--}}
-        {{--                new mapboxgl.Popup({ offset: 25 }) // add popups--}}
-        {{--                    .setHTML(--}}
-        {{--                        '<h3>' +--}}
-        {{--                        marker.properties.title +--}}
-        {{--                        '</h3><p>' +--}}
-        {{--                        marker.properties.description +--}}
-        {{--                        '</p>'--}}
-        {{--                    )--}}
-        {{--            ).addTo(map);--}}
-        {{--    });--}}
-
-        {{--    var nav = new mapboxgl.NavigationControl();--}}
-        {{--    map.addControl(nav, 'top-left');--}}
-
-
-
-        {{--</script>--}}
-
-    @endpush
-@stop
-
-
+            map.on('mouseenter', 'circle', function() { map.getCanvas().style.cursor = 'pointer'; });
+            map.on('mouseleave', 'circle', function() { map.getCanvas().style.cursor = ''; });
+        });
+    </script>
+@endpush

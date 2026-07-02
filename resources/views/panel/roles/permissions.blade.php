@@ -1,318 +1,100 @@
+@php
+    $permissions = \Spatie\Permission\Models\Permission::where('guard_name', 'admin')->get();
+    $groups = [];
+    $actionLabels = [
+        'show' => __('Show'),
+        'add' => __('Add / Edit'),
+        'edit' => __('Edit'),
+        'delete' => __('Delete'),
+        'manage' => __('Manage'),
+    ];
+    $groupLabels = [
+        'promotional-emails' => __('Promotional Emails'),
+        'manage_pages' => __('Site Pages'),
+        'manage_faqs' => __('FAQ'),
+        'add_roles' => __('Permissions'),
+        'businesses' => __('Businesses'),
+        'cities' => __('Cities'),
+        'countries' => __('Countries'),
+        'contacts' => __('Inbox'),
+        'settings' => __('Settings'),
+    ];
+    foreach ($permissions as $perm) {
+        $name = $perm->name;
+        if (preg_match('/^(show|add|edit|delete)_(.+)$/', $name, $m)) {
+            $action = $m[1];
+            $resource = $m[2];
+            $groups[$resource]['label'] = $groupLabels[$resource] ?? ucwords(str_replace(['-', '_'], ' ', $resource));
+            $groups[$resource]['permissions'][] = $perm;
+        } else {
+            $groups[$name]['label'] = $groupLabels[$name] ?? ucwords(str_replace(['-', '_'], ' ', $name));
+            $groups[$name]['permissions'][] = $perm;
+        }
+    }
+@endphp
 
 <div class="form-group">
-    <h5>Select All</h5>
+    <h5>@lang('Select All')</h5>
     <fieldset>
         <legend>
             <label class="kt-checkbox">
-
-                <input type="checkbox"  id="select-all" title="Select All" />
-
-{{--                <input type="checkbox" class="checkAll" @if(isset($item) && $item->hasAllDirectPermissions(['add_roles'])) checked @endif>--}}
+                <input type="checkbox" id="select-all" title="@lang('Select All')" />
                 <span class="first"></span>
             </label>
         </legend>
-
-    </fieldset>
-</div><div class="form-group">
-    <h5>Permissions</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['add_roles'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_roles" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_roles')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
     </fieldset>
 </div>
 
-<div class="form-group">
-    <h5>@lang('Partners')</h5>
-    <fieldset>
-        {{--        show_partners--}}
-        {{--        add_partners--}}
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_partners' , 'add_partners'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
+@foreach($groups as $key => $group)
+    @php
+        $permNames = array_column($group['permissions'], 'name');
+        $actionTypes = [];
+        foreach ($group['permissions'] as $p) {
+            if (preg_match('/^(show|add|edit|delete)_/', $p->name, $m)) {
+                $actionTypes[] = $m[1];
+            }
+        }
+        $actionTypes = array_unique($actionTypes);
+    @endphp
+    <div class="form-group">
+        <h5>{{ $group['label'] }}</h5>
+        <fieldset>
+            <legend>
                 <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_partners" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_partners')) checked @endif> @lang('Show')
-                    <span></span>
+                    <input type="checkbox" class="checkAll"
+                           @if(isset($item) && $item->hasAllDirectPermissions($permNames)) checked @endif>
+                    <span class="first"></span>
                 </label>
+            </legend>
+            <div class="row">
+                @foreach($group['permissions'] as $perm)
+                    @php
+                        $label = $perm->name;
+                        if (preg_match('/^(show|add|edit|delete)_/', $perm->name, $m)) {
+                            $label = $actionLabels[$m[1]] ?? $perm->name;
+                        }
+                    @endphp
+                    <div class="col-md-6 mb-4">
+                        <label class="kt-checkbox">
+                            <input name="permissions[]" class="checkbox" value="{{ $perm->name }}" type="checkbox"
+                                   @if(isset($item) && $item->hasPermissionTo($perm->name)) checked @endif>
+                            {{ $label }}
+                            <span></span>
+                        </label>
+                    </div>
+                @endforeach
             </div>
+        </fieldset>
+    </div>
+@endforeach
 
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_partners" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_partners')) checked @endif> @lang('Add & Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-
-<div class="form-group">
-    <h5>@lang('Partners')</h5>
-    <fieldset>
-        {{--        show_promotional-emails--}}
-        {{--        add_promotional-emails--}}
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_promotional-emails' , 'add_promotional-emails'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_promotional-emails" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_promotional-emails')) checked @endif> @lang('Show')
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_promotional-emails" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_promotional-emails')) checked @endif> @lang('Add & Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-
-<div class="form-group">
-    <h5>Admins</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_admins' , 'add_admins'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_admins" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_admins')) checked @endif> @lang('show')
-                    <span></span>
-                </label>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_admins" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_admins')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-<div class="form-group">
-    <h5>sliders</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_sliders' , 'add_sliders'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_sliders" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_sliders')) checked @endif> @lang('show')
-                    <span></span>
-                </label>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_sliders" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_sliders')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-
-<div class="form-group">
-   <h5>Users</h5>
-   <fieldset>
-       <legend>
-           <label class="kt-checkbox">
-               <input type="checkbox" class="checkAll"
-                      @if(isset($item) && $item->hasAllDirectPermissions(['show_users' , 'add_users'])) checked @endif>
-               <span class="first"></span>
-           </label>
-       </legend>
-       <div class="row">
-           <div class="col-md-6 mb-4">
-               <label class="kt-checkbox">
-                   <input name="permissions[]" class="checkbox" value="show_users" type="checkbox"
-                          @if(isset($item) && $item->hasPermissionTo('show_users')) checked @endif> @lang('show')
-                   <span></span>
-               </label>
-           </div>
-
-           <div class="col-md-6 mb-4">
-               <label class="kt-checkbox">
-                   <input name="permissions[]" class="checkbox" value="add_users" type="checkbox"
-                          @if(isset($item) && $item->hasPermissionTo('add_users')) checked @endif>@lang('Add / Edit')
-                   <span></span>
-               </label>
-           </div>
-
-       </div>
-   </fieldset>
-</div>
-<div class="form-group">
-    <h5>Products</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_products' , 'add_products'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_products" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_products')) checked @endif> @lang('show')
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_products" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_products')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-<div class="form-group">
-    <h5>addresses</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_addresses' , 'add_addresses'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_addresses" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_addresses')) checked @endif> @lang('show')
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_addresses" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_addresses')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-<div class="form-group">
-    <h5>services</h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['show_services' , 'add_services'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="show_services" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('show_services')) checked @endif> @lang('show')
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="add_services" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('add_services')) checked @endif>@lang('Add / Edit')
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
-
-<div class="form-group">
-    <h5> site pages </h5>
-    <fieldset>
-        <legend>
-            <label class="kt-checkbox">
-                <input type="checkbox" class="checkAll"
-                       @if(isset($item) && $item->hasAllDirectPermissions(['manage_pages'])) checked @endif>
-                <span class="first"></span>
-            </label>
-        </legend>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="kt-checkbox">
-                    <input name="permissions[]" class="checkbox" value="manage_pages" type="checkbox"
-                           @if(isset($item) && $item->hasPermissionTo('manage_pages')) checked @endif> Manage Pages
-                    <span></span>
-                </label>
-            </div>
-
-        </div>
-    </fieldset>
-</div>
 @push('js')
     <script>
         $(document).ready(function() {
-            // select all checkboxes
             $('#select-all').click(function() {
                 $('.checkbox').prop('checked', this.checked);
             });
 
-            // select all checkbox checked if all checkboxes are checked
             $('.checkbox').click(function() {
                 if ($('.checkbox:checked').length === $('.checkbox').length) {
                     $('#select-all').prop('checked', true);
@@ -321,7 +103,5 @@
                 }
             });
         });
-
     </script>
 @endpush
-

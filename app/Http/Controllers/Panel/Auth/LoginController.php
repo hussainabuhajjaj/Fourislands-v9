@@ -3,26 +3,16 @@
 namespace App\Http\Controllers\Panel\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Lockout;
 use Illuminate\Validation\ValidationException;
 use Validator;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -159,5 +149,52 @@ class LoginController extends Controller
         //
     }
 
+    protected function hasTooManyLoginAttempts(Request $request)
+    {
+        return RateLimiter::tooManyAttempts(
+            $this->throttleKey($request), $this->maxAttempts()
+        );
+    }
+
+    protected function incrementLoginAttempts(Request $request)
+    {
+        RateLimiter::hit(
+            $this->throttleKey($request), $this->decayMinutes() * 60
+        );
+    }
+
+    protected function clearLoginAttempts(Request $request)
+    {
+        RateLimiter::clear($this->throttleKey($request));
+    }
+
+    protected function fireLockoutEvent(Request $request)
+    {
+        event(new Lockout($request));
+    }
+
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = RateLimiter::availableIn($this->throttleKey($request));
+
+        return response()->json([
+            'msg' => trans('auth.throttle', ['seconds' => $seconds])
+        ], 423);
+    }
+
+    public function throttleKey(Request $request)
+    {
+        return Str::lower($request->input($this->username())).'|'.$request->ip();
+    }
+
+    protected function maxAttempts()
+    {
+        return 5;
+    }
+
+    protected function decayMinutes()
+    {
+        return 1;
+    }
 
 }

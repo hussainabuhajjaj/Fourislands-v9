@@ -1,64 +1,86 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\Front\FrontController;
-
 use App\Http\Controllers\Front\NewsletterController;
+use App\Http\Controllers\Front\MailController;
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\ServiceController;
+use App\Http\Controllers\Front\ProductController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\FaqController;
+use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\SearchController;
+use App\Http\Controllers\Front\QuoteRequestController;
+use Illuminate\Support\Facades\Response;
 
-Route::get('image/{folder}/{path}/{size?}', 'MediaController@photo');
-Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-Route::get('/newsletter', function () {
-    return view('welcome');
+Route::get('image/{folder}/{path}/{size?}', [MediaController::class, 'photo']);
+Route::get('/sitemap.xml', function () {
+    $paths = [
+        '/',
+        '/about',
+        '/services',
+        '/products',
+        '/faq',
+        '/contacts',
+        '/quote-request',
+        '/blog',
+    ];
+
+    $urls = [];
+    foreach (array_keys(LaravelLocalization::getSupportedLocales()) as $locale) {
+        foreach ($paths as $path) {
+            $urls[] = url($locale . ($path === '/' ? '' : $path));
+        }
+    }
+
+    $xml = view('sitemap', ['urls' => $urls])->render();
+
+    return Response::make($xml, 200, ['Content-Type' => 'application/xml']);
 });
+Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe')->middleware('throttle:3,1');
+Route::get('/unsubscribe/{email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+Route::get('/newsletter', [NewsletterController::class, 'welcome']);
+
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' =>
 ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
+    Route::group(['as' => 'home.'], function () {
+        Route::get('/', [FrontController::class, 'home'])->name('home');
+        Route::get('notification', [FrontController::class, 'notification']);
+        Route::get('/send-welcome-mail', [MailController::class, 'sendNewsletter']);
 
-    Route::group(['namespace' => 'App\Http\Controllers\Front', 'as' => 'home.'], function () {
-
-
-        Route::get('/', 'FrontController@home')->name('home');
-        Route::get('notification', 'FrontController@notification');
-        Route::get('/send-welcome-mail','MailController@sendNewsletter');
-
-        Route::get('/about', 'AboutController@Index');
+        Route::get('/about', [AboutController::class, 'Index']);
+        Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
         Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
-            Route::get('/', ['as' => 'index', 'uses' => 'ServiceController@index']);
-            Route::get('{id}/services', ['as' => 'show', 'uses' => 'ServiceController@show']);
-
-//            Route::get('{id}','ServiceController@show');
-//            Route::get('{id}/service', ['as' => 'show', 'uses' => 'ServiceController@show']);
+            Route::get('/', [ServiceController::class, 'index'])->name('index');
+            Route::get('{id}/services', [ServiceController::class, 'show'])->name('show');
         });
-        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-            Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
-            Route::get('{id}/products', ['as' => 'show', 'uses' => 'ProductController@show']);
 
-//            Route::get('{id}','ServiceController@show');
-//            Route::get('{id}/service', ['as' => 'show', 'uses' => 'ServiceController@show']);
+        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+            Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('{id}/products', [ProductController::class, 'show'])->name('show');
         });
 
         Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function () {
-            Route::get('/', ['as' => 'index', 'uses' => 'ContactController@index']);
-//            Route::get('contact', 'ContactController@Index');
-            Route::post('/', ['as' => 'store', 'uses' => 'ContactController@store']);
+            Route::get('/', [ContactController::class, 'index'])->name('index');
+            Route::post('/', [ContactController::class, 'store'])->name('store')->middleware('throttle:5,1');
         });
 
+        Route::group(['prefix' => 'quote-request', 'as' => 'quote-requests.'], function () {
+            Route::get('/', [QuoteRequestController::class, 'index'])->name('index');
+            Route::post('/', [QuoteRequestController::class, 'store'])->name('store')->middleware('throttle:5,1');
+        });
+
+        Route::get('search', [SearchController::class, 'search'])->name('search');
+
+        Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+            Route::get('/', [BlogController::class, 'index'])->name('index');
+            Route::get('category/{slug}', [BlogController::class, 'category'])->name('category');
+            Route::get('{slug}', [BlogController::class, 'show'])->name('show');
+        });
     });
-
-
 });
-

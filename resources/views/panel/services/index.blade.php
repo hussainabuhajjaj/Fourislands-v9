@@ -84,8 +84,8 @@
     <script src={{asset('panelAssets/js/data-ajax.js')}}  type="text/javascript"></script>
 
 
-    <script>$("[data-fancybox]").fancybox({});</script>
     <script src="{{asset('/panelAssets/js/fancybox.min.js')}}"></script>
+    <script>$("[data-fancybox]").fancybox({});</script>
     <script>
 
 

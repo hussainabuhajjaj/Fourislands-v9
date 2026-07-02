@@ -52,7 +52,7 @@ function locales()
     return $arr;
 }
 function pages(){
-    return \App\Models\Page::all();
+    return \App\Models\Page::translatedIn(app()->getLocale())->get();
 }
 function roles()
 {
@@ -67,7 +67,8 @@ function replace_space_str($str)
 
 function getSetting($key)
 {
-    return \App\Models\Setting::getSetting($key)->value;
+    $setting = \App\Models\Setting::getSetting($key);
+    return $setting ? $setting->value : '';
 }
 if (!function_exists('siteLogo')) {
     function siteLogo ($key){

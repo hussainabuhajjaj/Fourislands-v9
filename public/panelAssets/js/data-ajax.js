@@ -84,6 +84,9 @@ var KTDatatableRemoteAjaxDemo = function () {
 
         });
 
+        datatable.on('kt-datatable--on-layout-updated', function() {
+            $('[data-fancybox]').fancybox({});
+        });
 
     };
 

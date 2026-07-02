@@ -12,18 +12,19 @@ use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Slider;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
     public function home()
     {
-        $data['services'] = Service::query()->where('is_home',1)->get();
-        $data['products'] = Product::all();
+        $data['services'] = Service::translatedIn(app()->getLocale())->where('is_home',1)->get();
+        $data['products'] = Product::translatedIn(app()->getLocale())->get();
         $data['partners'] = Partner::all();
-        $data['addresses'] = Address::all();
-        $data['sliders'] = Slider::all();
-//        dd($data['services']);
+        $data['addresses'] = Address::translatedIn(app()->getLocale())->get();
+        $data['sliders'] = Slider::translatedIn(app()->getLocale())->get();
+        $data['testimonials'] = Testimonial::active()->get();
         return view('frontend.home', $data);
     }
 
@@ -31,12 +32,12 @@ class FrontController extends Controller
     {
         $title = str_replace('-', ' ', $title);
         $data['item'] = Page::query()->whereId($id)->whereHas('translations', function ($q) use ($title) {
-            $q->where('title', 'LIKE', '%' . $title . '%');
+            $q->where('locale', app()->getLocale())->where('title', 'LIKE', '%' . $title . '%');
         })->first();
 
         if (!$data['item']) abort(404);
 
-        return view('frontend.home', $data);
+        return view('frontend.pages.show', $data);
     }
 
 

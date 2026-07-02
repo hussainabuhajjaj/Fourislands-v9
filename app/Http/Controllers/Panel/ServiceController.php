@@ -35,9 +35,10 @@ class ServiceController extends Controller
 
     public function store(ServiceRequest $request)
     {
-
         $data = $request->only(Service::FILLABLE);
-
+        if (isset($data['features']) && is_string($data['features'])) {
+            $data['features'] = $this->parseFeatures($data['features']);
+        }
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('flag');
@@ -68,6 +69,9 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, $id)
     {
         $data = $request->only(Service::FILLABLE);
+        if (isset($data['features']) && is_string($data['features'])) {
+            $data['features'] = $this->parseFeatures($data['features']);
+        }
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('flag');
@@ -84,6 +88,11 @@ class ServiceController extends Controller
 
         $product = Service::updateOrCreate(['id' => $id], $data)->createTranslation($request);
         return $this->response_api(true, __('front.success'), StatusCodes::OK);
+    }
+
+    private function parseFeatures(string $input): array
+    {
+        return array_values(array_filter(array_map('trim', explode("\n", $input)), fn($v) => $v !== ''));
     }
 
     public function destroy($id)

@@ -1,19 +1,13 @@
 @include('frontend.layouts.head')
 <body>
+    @include('frontend.layouts.header')
 
+    <main id="main-content">
+        @yield('content')
+    </main>
 
-@include('frontend.layouts.header')
-<!-- Slider -->
-<!-- Content -->
-<div class="content-wrapper">
-
-
-    @yield('content')
-@include('frontend.layouts.footer')
-
-</div>
-@include('frontend.layouts.js')
-
+    @include('frontend.layouts.sticky-cta')
+    @include('frontend.layouts.footer')
+    @include('frontend.layouts.js')
 </body>
-
 </html>

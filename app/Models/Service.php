@@ -10,12 +10,19 @@ class Service extends Model
 {
     use Translatable;
 
-    const FILLABLE = ['image','large_image','is_home'];
+    const FILLABLE = ['image', 'large_image', 'is_home', 'icon', 'short_description', 'features'];
     public $translatedAttributes = ['title', 'description'];
     public $translationModel = ServiceTranslation::class;
 
     protected $fillable = self::FILLABLE;
 
+    protected function casts(): array
+    {
+        return [
+            'features' => 'array',
+            'is_home' => 'boolean',
+        ];
+    }
 
     public function createTranslation(Request $request)
     {
@@ -29,12 +36,9 @@ class Service extends Model
         }
         return $this;
     }
+
     public function scopeIsHome($q)
     {
         return $q->where('is_home', 1);
     }
-//    public function mainImage()
-//    {
-//        return $this->hasOne(Image::class, 'id', 'main_image');
-//    }
 }
