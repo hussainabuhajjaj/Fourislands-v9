@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('page_title', $post->title)
-@section('meta_desc', strip_tags($post->excerpt ?: Str::limit($post->content, 160)))
+@section('page_title', $post->meta_title ?: $post->title)
+@section('meta_desc', $post->meta_description ?: strip_tags($post->excerpt ?: Str::limit($post->content, 160)))
 
 @section('content')
     <section class="relative pt-28 sm:pt-36 pb-16 sm:pb-20 bg-slate-950">
