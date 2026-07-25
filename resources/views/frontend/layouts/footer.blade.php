@@ -6,10 +6,18 @@
                 <h5 class="font-heading text-white text-lg mb-4 pb-3 border-b border-gold-500/25">@lang('translate.about_us')</h5>
                 <p class="text-white/55 text-sm leading-relaxed">@lang('translate.footer_desc')</p>
                 <div class="flex gap-2 mt-4">
-                    @if(getSetting('facebook'))<a href="{{ getSetting('facebook') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-facebook-f"></i></a>@endif
-                    @if(getSetting('twitter'))<a href="{{ getSetting('twitter') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-twitter"></i></a>@endif
-                    @if(getSetting('instagram'))<a href="{{ getSetting('instagram') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-instagram"></i></a>@endif
-                    @if(getSetting('linkedin'))<a href="{{ getSetting('linkedin') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-linkedin-in"></i></a>@endif
+                    @if(getSetting('facebook'))
+                    <a href="{{ getSetting('facebook') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-facebook-f"></i></a>
+                    @endif
+                    @if(getSetting('twitter'))
+                    <a href="{{ getSetting('twitter') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-twitter"></i></a>
+                    @endif
+                    @if(getSetting('instagram'))
+                    <a href="{{ getSetting('instagram') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if(getSetting('linkedin'))
+                    <a href="{{ getSetting('linkedin') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-linkedin-in"></i></a>
+                    @endif
                 </div>
             </div>
             <div class="lg:col-span-3 md:col-span-1">

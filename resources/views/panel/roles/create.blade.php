@@ -24,7 +24,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.permission.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">

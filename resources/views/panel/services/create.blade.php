@@ -25,7 +25,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.services.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -62,14 +64,14 @@
                                 <div class="form-group">
                                     <label>Service Title</label>
                                     <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}"
-                                           placeholder="title" required value="{{ isset($item) ? $item->getTranslation($key)->title : "" }}">
+                                           placeholder="title" required value="{{ isset($item) ? $item->translateOrNew($key)->title : "" }}">
 
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
                                     <textarea class="form-control m-input summernote"  type="text" name="{{ 'description_'.$key }}"
                                            placeholder="" required >
-                                        {{ isset($item) ? $item->getTranslation($key)->description : "" }}
+                                        {{ isset($item) ? $item->translateOrNew($key)->description : "" }}
                                     </textarea>
                                 </div>
                             </div>
@@ -96,7 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label>Features (one per line)</label>
-                        <textarea class="form-control m-input" name="features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">{{ isset($item) && $item->features ? implode("\n", $item->features) : '' }}</textarea>
+                        <textarea class="form-control m-input" name="features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">{{ isset($item) && $item->features ? (is_array($item->features) ? implode("\n", $item->features) : $item->features) : '' }}</textarea>
                         <span class="form-text text-muted">Each line becomes a bullet point on the service page</span>
                     </div>
                     <div class="form-group">

@@ -24,7 +24,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.pages.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -61,13 +63,13 @@
                                 <div class="form-group">
                                     <label>Page Title</label>
                                     <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}"
-                                           placeholder="Page Title" required value="{{ isset($item) ? $item->getTranslation($key)->title : "" }}">
+                                           placeholder="Page Title" required value="{{ isset($item) ? $item->translateOrNew($key)->title : "" }}">
 
                                 </div>
                                 <div class="form-group">
                                     <label>Page Content</label>
                                     <textarea class="summernote form-control" style="display:none!important;" id="kt_summernote_1"
-                                              name="{{ 'content_'.$key }}" required placeholder="Page Content">{{ isset($item) ? $item->getTranslation($key)->content : ""  }}</textarea>
+                                              name="{{ 'content_'.$key }}" required placeholder="Page Content">{{ isset($item) ? $item->translateOrNew($key)->content : ""  }}</textarea>
                                 </div>
 
                             </div>

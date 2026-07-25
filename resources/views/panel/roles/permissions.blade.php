@@ -47,7 +47,7 @@
 
 @foreach($groups as $key => $group)
     @php
-        $permNames = array_column($group['permissions'], 'name');
+        $permNames = collect($group['permissions'])->pluck('name')->all();
         $actionTypes = [];
         foreach ($group['permissions'] as $p) {
             if (preg_match('/^(show|add|edit|delete)_/', $p->name, $m)) {
@@ -62,7 +62,7 @@
             <legend>
                 <label class="kt-checkbox">
                     <input type="checkbox" class="checkAll"
-                           @if(isset($item) && $item->hasAllDirectPermissions($permNames)) checked @endif>
+                           @if(isset($item) && count($permNames) && $item->hasAllDirectPermissions(...$permNames)) checked @endif>
                     <span class="first"></span>
                 </label>
             </legend>

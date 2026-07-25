@@ -25,7 +25,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.products.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -62,13 +64,13 @@
                                 <div class="form-group">
                                     <label>Product Title</label>
                                     <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}"
-                                           placeholder="Page Title" required value="{{ isset($item) ? $item->getTranslation($key)->title : "" }}">
+                                           placeholder="Page Title" required value="{{ isset($item) ? $item->translateOrNew($key)->title : "" }}">
 
                                 </div>
 								<div class="form-group">
                                     <label>Product Description</label>
                                     <textarea class="form-control m-input summernote" type="text" name="{{ 'description_'.$key }}"
-                                           placeholder="Page Title" required >{{ isset($item) ? $item->getTranslation($key)->description : "" }}</textarea>
+                                           placeholder="Page Title" required >{{ isset($item) ? $item->translateOrNew($key)->description : "" }}</textarea>
 
                                 </div>
 

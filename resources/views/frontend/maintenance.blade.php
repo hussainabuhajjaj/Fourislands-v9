@@ -23,10 +23,18 @@
         <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-3">@lang('translate.coming_soon')</h1>
         <p class="text-navy-300 text-base mb-8 leading-relaxed">@lang('translate.site_under_maintenance', ['default' => 'Our website is currently under maintenance. We\'ll be back shortly.'])</p>
         <div class="flex justify-center gap-3">
-            @if(getSetting('facebook'))<a href="{{ getSetting('facebook') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-facebook-f"></i></a>@endif
-            @if(getSetting('twitter'))<a href="{{ getSetting('twitter') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-twitter"></i></a>@endif
-            @if(getSetting('instagram'))<a href="{{ getSetting('instagram') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-instagram"></i></a>@endif
-            @if(getSetting('linkedin'))<a href="{{ getSetting('linkedin') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-linkedin-in"></i></a>@endif
+            @if(getSetting('facebook'))
+            <a href="{{ getSetting('facebook') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-facebook-f"></i></a>
+            @endif
+            @if(getSetting('twitter'))
+            <a href="{{ getSetting('twitter') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-twitter"></i></a>
+            @endif
+            @if(getSetting('instagram'))
+            <a href="{{ getSetting('instagram') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-instagram"></i></a>
+            @endif
+            @if(getSetting('linkedin'))
+            <a href="{{ getSetting('linkedin') }}" target="_blank" rel="noopener" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 text-white/60 hover:bg-gold-500 hover:text-navy-900 transition-all text-sm"><i class="fab fa-linkedin-in"></i></a>
+            @endif
         </div>
     </div>
 </body>

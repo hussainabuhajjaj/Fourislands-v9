@@ -153,7 +153,7 @@
         $('.slider-fade .owl-carousel').owlCarousel({
             items: 1, loop: true, dots: false, margin: 0,
             autoplay: true, smartSpeed: 600, animateOut: 'fadeOut',
-            nav: true, rtl: @if(app()->getLocale() == 'ar') true @else false @endif,
+            nav: true, rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             navText: [
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
@@ -162,7 +162,7 @@
         $('.testimonials-carousel').owlCarousel({
             loop: true, margin: 20, mouseDrag: true, autoplay: true,
             dots: true, nav: false, items: 1,
-            rtl: @if(app()->getLocale() == 'ar') true @else false @endif,
+            rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             responsive: {
                 0: { items: 1 },
                 768: { items: 1 }
@@ -171,7 +171,7 @@
         $('.clients-carousel').owlCarousel({
             loop: true, margin: 30, mouseDrag: true, autoplay: true,
             dots: false, nav: false,
-            rtl: @if(app()->getLocale() == 'ar') true @else false @endif,
+            rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             responsive: {
                 0: { margin: 10, items: 2 },
                 600: { items: 3 },

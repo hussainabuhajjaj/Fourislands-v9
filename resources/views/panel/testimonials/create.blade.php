@@ -19,7 +19,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.testimonials.index') }}">
         @csrf
-        @if(isset($item)) @method('PUT') @endif
+        @if(isset($item))
+        @method('PUT')
+    @endif
         <div class="row">
             <div class="col-md-8">
                 <div class="kt-portlet">

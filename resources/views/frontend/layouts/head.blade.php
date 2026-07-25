@@ -4,17 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@hasSection('page_title')@yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')</title>
+    <title>@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')</title>
     <meta name="description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
 
-    <meta property="og:title" content="@hasSection('page_title')@yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')">
+    <meta property="og:title" content="@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')">
     <meta property="og:description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('logo.png') }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@hasSection('page_title')@yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')">
+    <meta name="twitter:title" content="@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')">
     <meta name="twitter:description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+    <link rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+    <link rel="alternate" hreflang="x-default" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+
+    @php
+        $orgPhone = getSetting('phone') ?: '+965 2225 5565';
+        $orgEmail = getSetting('email') ?: 'info@fourislands.com';
+        $orgAddress = getSetting('address') ?: 'Kuwait - Qibla';
+        $foundingYear = 1987;
+    @endphp
 
     <script type="application/ld+json">
     {
@@ -25,17 +37,60 @@
         "url": "{{ url('/') }}",
         "logo": "{{ asset('logo.png') }}",
         "description": "@lang('translate.meta_desc')",
-        "foundingDate": "1987",
+        "foundingDate": "{{ $foundingYear }}",
+        "telephone": "{{ $orgPhone }}",
+        "email": "{{ $orgEmail }}",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "{{ $orgAddress }}",
             "addressCountry": "KW"
         },
         "sameAs": [
-            @if(getSetting('facebook'))"{{ getSetting('facebook') }}",@endif
-            @if(getSetting('twitter'))"{{ getSetting('twitter') }}",@endif
-            @if(getSetting('instagram'))"{{ getSetting('instagram') }}",@endif
-            @if(getSetting('linkedin'))"{{ getSetting('linkedin') }}"@endif
+            @if(getSetting('facebook'))
+                "{{ getSetting('facebook') }}",
+            @endif
+            @if(getSetting('twitter'))
+                "{{ getSetting('twitter') }}",
+            @endif
+            @if(getSetting('instagram'))
+                "{{ getSetting('instagram') }}",
+            @endif
+            @if(getSetting('linkedin'))
+                "{{ getSetting('linkedin') }}"
+            @endif
         ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Four Islands EST. for General Trading and Contracting",
+        "alternateName": "مؤسسة الجزر الأربعة للتجارة العامة والمقاولات",
+        "image": "{{ asset('logo.png') }}",
+        "url": "{{ url('/') }}",
+        "telephone": "{{ $orgPhone }}",
+        "email": "{{ $orgEmail }}",
+        "foundingDate": "{{ $foundingYear }}",
+        "description": "@lang('translate.meta_desc')",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ $orgAddress }}",
+            "addressCountry": "KW"
+        },
+        "areaServed": { "@type": "Country", "name": "KW" },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "@lang('translate.ourservices')",
+            "itemListElement": [
+                @foreach(\App\Models\Service::translatedIn(app()->getLocale())->get() as $svc)
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ $svc->title }}" } }@if(!$loop->last)
+,
+@endif
+                @endforeach
+            ]
+        }
     }
     </script>
 

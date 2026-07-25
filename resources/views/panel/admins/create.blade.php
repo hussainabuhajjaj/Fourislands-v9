@@ -18,11 +18,14 @@
 @section('content')
     @php
         $item = isset($item) ? $item: null;
+        $selectedRoleId = $item ? optional($item->roles->first())->id : null;
     @endphp
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.admins.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -72,7 +75,7 @@
                         <select class="form-control kt-selectpicker" name="role_id">
                             @foreach(roles() as $role)
                                 <option
-                                    value="{{ $role->id }}" {{ isset($item) ? ($role->id == $item->roles[0]->id ? 'selected' : '') : '' }}>{{ $role->name }}</option>
+                                    value="{{ $role->id }}" {{ $role->id == $selectedRoleId ? 'selected' : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>

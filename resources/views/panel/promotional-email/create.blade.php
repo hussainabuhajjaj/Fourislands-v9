@@ -17,6 +17,11 @@
 
 @endsection
 @section('content')
+    @php
+        $item = isset($item) ? $item : null;
+        $selectedRecipients = $item && $item->recipients ? json_decode($item->recipients, true) : [];
+        $selectedRecipients = is_array($selectedRecipients) ? $selectedRecipients : [];
+    @endphp
     <div class="row">
 
         <div class="col-md-8">
@@ -27,16 +32,19 @@
                 <div class="kt-portlet__body">
 
                     <div class="tab-content">
-                        <form id="form" action="{{ route('panel.promotional-emails.store') }}" method="post"
+                        <form id="form" action="{{ $item ? route('panel.promotional-emails.update', $item->id) : route('panel.promotional-emails.store') }}" method="post"
                               enctype="multipart/form-data" to="{{ route('panel.promotional-emails.index') }}">
                             @csrf
+                            @if($item)
+                                @method('PUT')
+                            @endif
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input type="text" class="form-control" name="subject" required>
+                                <input type="text" class="form-control" name="subject" value="{{ $item ? $item->subject : '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea class="form-control summernote" name="message" rows="5" required></textarea>
+                                <textarea class="form-control summernote" name="message" rows="5" required>{{ $item ? $item->message : '' }}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -55,16 +63,18 @@
                                 <select class="form-control kt-selectpicker" multiple="multiple" id="recipients"
                                         name="recipients[]">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->email }}">{{ $user->name }} ({{ $user->email }})
+                                        <option value="{{ $user->email }}" {{ in_array($user->email, $selectedRecipients) ? 'selected' : '' }}>{{ $user->name }} ({{ $user->email }})
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
+                            @if(!$item)
                             <div class="form-group">
                                 <label for="scheduled_at">Scheduled Date and Time:</label>
                                 <input type="datetime-local" class="form-control" id="scheduled_at" name="scheduled_at"
                                        required>
                             </div>
+                            @endif
                             <div class="form-group">
                                 <label for="start_date">Start Date (optional)</label>
                                 <input type="datetime-local" min="2018-06-07T00:00" step="1" class="form-control"

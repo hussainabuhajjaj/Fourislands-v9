@@ -22,7 +22,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.sliders.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -58,13 +60,13 @@
                                 <div class="form-group">
                                     <label>@lang('Title')</label>
                                     <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}"
-                                           required value="{{ isset($item) ? @$item->getTranslation($key)->title : "" }}">
+                                           required value="{{ isset($item) ? $item->translateOrNew($key)->title : "" }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>@lang('Short Description')</label>
                                     <input class="form-control m-input" type="text" name="{{ 'short_description_'.$key }}"
-                                           required value="{{ isset($item) ? @$item->getTranslation($key)->short_description : "" }}">
+                                           required value="{{ isset($item) ? $item->translateOrNew($key)->short_description : "" }}">
                                 </div>
 
                             </div>

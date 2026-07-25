@@ -25,7 +25,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.addresses.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -62,13 +64,13 @@
                                 <div class="form-group">
                                     <label>City</label>
                                     <input class="form-control m-input" type="text" name="{{ 'city_'.$key }}"
-                                           placeholder="City" required value="{{ isset($item) ? $item->getTranslation($key)->city : "" }}">
+                                           placeholder="City" required value="{{ isset($item) ? $item->translateOrNew($key)->city : "" }}">
 
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
                                     <input class="form-control m-input" type="text" name="{{ 'address_'.$key }}"
-                                           placeholder="Address" required value="{{ isset($item) ? $item->getTranslation($key)->address : "" }}">
+                                           placeholder="Address" required value="{{ isset($item) ? $item->translateOrNew($key)->address : "" }}">
 
                                 </div>
 
@@ -112,12 +114,12 @@
                         <div class="form-group">
                             <label>@lang('phone')</label>
 
-                            <input type="text" placeholder="Phone" class="form-control m-input" name="phone">
+                            <input type="text" placeholder="Phone" class="form-control m-input" name="phone" value="{{ isset($item) ? $item->phone : '' }}">
                         </div>
                         <div class="form-group">
                             <label>@lang('email')</label>
 
-                            <input type="email" placeholder="email" class="form-control m-input" name="email">
+                            <input type="email" placeholder="email" class="form-control m-input" name="email" value="{{ isset($item) ? $item->email : '' }}">
                         </div>
 
                     </div>

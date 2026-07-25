@@ -22,7 +22,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.faq.index') }}">
     @csrf
-    @if(isset($item)) @method('PUT') @endif
+    @if(isset($item))
+        @method('PUT')
+    @endif
     <div class="row">
 
         <div class="col-md-8">
@@ -55,12 +57,12 @@
                                 <div class="form-group">
                                     <label>Question</label>
                                     <input class="form-control m-input" type="text" name="{{ 'question_'.$key }}"
-                                           placeholder="Question" required value="{{ isset($item) ? $item->getTranslation($key)->question : "" }}">
+                                           placeholder="Question" required value="{{ isset($item) ? $item->translateOrNew($key)->question : "" }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Answer</label>
                                     <textarea class="form-control m-input summernote" name="{{ 'answer_'.$key }}"
-                                              placeholder="Answer" required>{{ isset($item) ? $item->getTranslation($key)->answer : "" }}</textarea>
+                                              placeholder="Answer" required>{{ isset($item) ? $item->translateOrNew($key)->answer : "" }}</textarea>
                                 </div>
 
                             </div>

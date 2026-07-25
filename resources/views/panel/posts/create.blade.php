@@ -19,7 +19,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" enctype="multipart/form-data" to="{{ route('panel.posts.index') }}">
         @csrf
-        @if(isset($item)) @method('PUT') @endif
+        @if(isset($item))
+        @method('PUT')
+    @endif
         <div class="row">
             <div class="col-md-8">
                 <div class="kt-portlet kt-portlet--tabs">
@@ -43,23 +45,23 @@
                                 <div class="tab-pane {{$i==1?'active':''}}" id="kt_tabs_{{$i}}" role="tabpanel">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}" placeholder="Title" required value="{{ isset($item) ? $item->getTranslation($key)->title : '' }}">
+                                        <input class="form-control m-input" type="text" name="{{ 'title_'.$key }}" placeholder="Title" required value="{{ isset($item) ? $item->translateOrNew($key)->title : '' }}">
                                     </div>
                                     <div class="form-group">
                                         <label>Excerpt</label>
-                                        <textarea class="form-control m-input" name="{{ 'excerpt_'.$key }}" rows="3" placeholder="Short excerpt">{{ isset($item) ? $item->getTranslation($key)->excerpt : '' }}</textarea>
+                                        <textarea class="form-control m-input" name="{{ 'excerpt_'.$key }}" rows="3" placeholder="Short excerpt">{{ isset($item) ? $item->translateOrNew($key)->excerpt : '' }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Content</label>
-                                        <textarea class="form-control m-input summernote" name="{{ 'content_'.$key }}" placeholder="Post content" required>{{ isset($item) ? $item->getTranslation($key)->content : '' }}</textarea>
+                                        <textarea class="form-control m-input summernote" name="{{ 'content_'.$key }}" placeholder="Post content" required>{{ isset($item) ? $item->translateOrNew($key)->content : '' }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Title</label>
-                                        <input class="form-control m-input" type="text" name="{{ 'meta_title_'.$key }}" placeholder="SEO title" value="{{ isset($item) ? $item->getTranslation($key)->meta_title : '' }}">
+                                        <input class="form-control m-input" type="text" name="{{ 'meta_title_'.$key }}" placeholder="SEO title" value="{{ isset($item) ? $item->translateOrNew($key)->meta_title : '' }}">
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Description</label>
-                                        <textarea class="form-control m-input" name="{{ 'meta_description_'.$key }}" rows="2" placeholder="SEO description">{{ isset($item) ? $item->getTranslation($key)->meta_description : '' }}</textarea>
+                                        <textarea class="form-control m-input" name="{{ 'meta_description_'.$key }}" rows="2" placeholder="SEO description">{{ isset($item) ? $item->translateOrNew($key)->meta_description : '' }}</textarea>
                                     </div>
                                 </div>
                                 @php $i++; @endphp

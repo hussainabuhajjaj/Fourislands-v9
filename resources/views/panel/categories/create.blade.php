@@ -15,7 +15,9 @@
 
     <form method="POST" action="{{ url()->current() }}" class="form-horizontal" id="form" to="{{ route('panel.categories.index') }}">
         @csrf
-        @if(isset($item)) @method('PUT') @endif
+        @if(isset($item))
+        @method('PUT')
+    @endif
         <div class="row">
             <div class="col-md-8">
                 <div class="kt-portlet kt-portlet--tabs">
@@ -39,7 +41,7 @@
                                 <div class="tab-pane {{$i==1?'active':''}}" id="kt_tabs_{{$i}}" role="tabpanel">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input class="form-control m-input" type="text" name="{{ 'name_'.$key }}" placeholder="Category name" required value="{{ isset($item) ? $item->getTranslation($key)->name : '' }}">
+                                        <input class="form-control m-input" type="text" name="{{ 'name_'.$key }}" placeholder="Category name" required value="{{ isset($item) ? $item->translateOrNew($key)->name : '' }}">
                                     </div>
                                 </div>
                                 @php $i++; @endphp

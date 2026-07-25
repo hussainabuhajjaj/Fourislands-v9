@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-	<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 	<!--begin:: Vendor Plugins -->
 	<link href="{{ asset('panelAssets/css/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css"/>
@@ -23,9 +22,8 @@
 	<link href="{{ asset('panelAssets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('panelAssets/js/summernote/dist/summernote.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('panelAssets/css/custom-style.css') }}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset('panelAssets/css/modern-theme.css') }}" rel="stylesheet" type="text/css" />
 
 	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
-
 
 </head>
