@@ -27,12 +27,34 @@ Route::get('/sitemap.xml', function () {
         '/contacts',
         '/quote-request',
         '/blog',
+        '/thank-you',
     ];
 
     $urls = [];
     foreach (array_keys(LaravelLocalization::getSupportedLocales()) as $locale) {
         foreach ($paths as $path) {
             $urls[] = url($locale . ($path === '/' ? '' : $path));
+        }
+    }
+
+    $services = \App\Models\Service::translatedIn('en')->get();
+    foreach ($services as $s) {
+        foreach (array_keys(LaravelLocalization::getSupportedLocales()) as $locale) {
+            $urls[] = url($locale . '/services/' . $s->id . '/services');
+        }
+    }
+
+    $products = \App\Models\Product::translatedIn('en')->get();
+    foreach ($products as $p) {
+        foreach (array_keys(LaravelLocalization::getSupportedLocales()) as $locale) {
+            $urls[] = url($locale . '/products/' . $p->id . '/products');
+        }
+    }
+
+    $posts = \App\Models\Post::published()->translatedIn('en')->get();
+    foreach ($posts as $post) {
+        foreach (array_keys(LaravelLocalization::getSupportedLocales()) as $locale) {
+            $urls[] = url($locale . '/blog/' . $post->slug);
         }
     }
 
@@ -54,6 +76,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' =>
 
         Route::get('/about', [AboutController::class, 'Index']);
         Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+        Route::get('/thank-you', function () {
+            return view('frontend.thank-you');
+        })->name('thank-you');
 
         Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
             Route::get('/', [ServiceController::class, 'index'])->name('index');

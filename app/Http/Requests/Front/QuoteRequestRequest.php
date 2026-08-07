@@ -3,12 +3,15 @@
 namespace App\Http\Requests\Front;
 
 use App\Constants\StatusCodes;
+use App\Http\Requests\SpamProtection;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class QuoteRequestRequest extends FormRequest
 {
+    use SpamProtection;
+
     public function authorize()
     {
         return true;
@@ -25,7 +28,13 @@ class QuoteRequestRequest extends FormRequest
             'product_id'     => 'nullable|exists:products,id',
             'message'        => 'required|string|max:5000',
             'company_website' => 'nullable|size:0',
+            '_form_token' => 'required|string',
         ];
+    }
+
+    protected function spamFormName(): string
+    {
+        return 'quote-request';
     }
 
     protected function failedValidation(Validator $validator)

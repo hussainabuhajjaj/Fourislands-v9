@@ -41,4 +41,18 @@ class PageController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $item = Page::findOrFail($id);
+
+        return $item->delete()
+            ? $this->response_api(true, __('front.success'), StatusCodes::OK)
+            : $this->response_api(false, __('front.error'), StatusCodes::INTERNAL_ERROR);
+    }
+
+    public function datatable()
+    {
+        return getDatatable(Page::query(), ['translations']);
+    }
+
 }

@@ -1,0 +1,6 @@
+extracted/
+*.tar
+*.tar.gz
+*.zip
+!invoice-ninja-cpanel-helpers.zip
+.DS_Store

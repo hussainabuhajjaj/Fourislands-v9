@@ -1,0 +1,15 @@
+{
+  "application": "Invoice Ninja",
+  "release": "v5.13.26",
+  "version": "5.13.26",
+  "archive": "invoiceninja-v5.13.26.tar",
+  "archive_sha256": "be344fc3977394b7defda1bf636f33d42108b4045bb310e5aa91176749666dbc",
+  "archive_size": "192M",
+  "extracted_size": "850M",
+  "source_url": "https://github.com/invoiceninja/invoiceninja/releases/download/v5.13.26/invoiceninja.tar",
+  "required_document_root": "public",
+  "required_crons": [
+    "* * * * * cd /home/USER/invoiceninja && /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1",
+    "*/5 * * * * cd /home/USER/invoiceninja && /usr/local/bin/php -d register_argc_argv=On artisan queue:work --stop-when-empty >> /dev/null 2>&1"
+  ]
+}

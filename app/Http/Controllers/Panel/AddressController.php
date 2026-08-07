@@ -54,13 +54,7 @@ class AddressController extends Controller
         $data = $request->only(Address::FILLABLE);
 
         if ($file = $request->file('image')) {
-            $path = $file->store('images');
-
-            $data['image'] = Image::create([
-                'name' => $file->getClientOriginalName(),
-                'size' => $file->getSize(),
-                'path' => $path
-            ])->id;
+            $data['image'] = $file->store('flag');
         } else {
             unset($data['image']);
         }

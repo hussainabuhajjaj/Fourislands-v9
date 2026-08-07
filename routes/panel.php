@@ -227,7 +227,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::group(['prefix' => '{id}/'], function () {
                 Route::get('/edit', [FaqController::class, 'edit'])->name('edit');
-                Route::put('/', [FaqController::class, 'update'])->name('update');
+                Route::put('/edit', [FaqController::class, 'update'])->name('update');
                 Route::delete('/', [FaqController::class, 'destroy'])->name('destroy');
             });
         });

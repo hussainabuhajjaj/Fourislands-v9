@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html @if(app()->getLocale() == 'ar') dir="rtl" lang="ar" @else lang="en" @endif>
+<html {{ app()->getLocale() == 'ar' ? 'dir="rtl" lang="ar"' : 'lang="en"' }}>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')</title>
-    <meta name="description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
+    <title>@hasSection('page_title') @yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')</title>
+    <meta name="description" content="@hasSection('meta_desc') @yield('meta_desc') @else @lang('translate.meta_desc') @endif">
 
-    <meta property="og:title" content="@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')">
-    <meta property="og:description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
+    <meta property="og:title" content="@hasSection('page_title') @yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')">
+    <meta property="og:description" content="@hasSection('meta_desc') @yield('meta_desc') @else @lang('translate.meta_desc') @endif">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('logo.png') }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@hasSection('page_title')@yield('page_title') |@endif @lang('translate.fourislands') - @lang('translate.prof')">
-    <meta name="twitter:description" content="@hasSection('meta_desc')@yield('meta_desc')@else @lang('translate.meta_desc') @endif">
+    <meta name="twitter:title" content="@hasSection('page_title') @yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')">
+    <meta name="twitter:description" content="@hasSection('meta_desc') @yield('meta_desc') @else @lang('translate.meta_desc') @endif">
 
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
@@ -30,8 +30,8 @@
 
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "Organization",
+        "@@context": "https://schema.org",
+        "@@type": "Organization",
         "name": "Four Islands EST. for General Trading and Contracting",
         "alternateName": "مؤسسة الجزر الأربعة للتجارة العامة والمقاولات",
         "url": "{{ url('/') }}",
@@ -41,7 +41,7 @@
         "telephone": "{{ $orgPhone }}",
         "email": "{{ $orgEmail }}",
         "address": {
-            "@type": "PostalAddress",
+            "@@type": "PostalAddress",
             "streetAddress": "{{ $orgAddress }}",
             "addressCountry": "KW"
         },
@@ -64,8 +64,8 @@
 
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@@context": "https://schema.org",
+        "@@type": "LocalBusiness",
         "name": "Four Islands EST. for General Trading and Contracting",
         "alternateName": "مؤسسة الجزر الأربعة للتجارة العامة والمقاولات",
         "image": "{{ asset('logo.png') }}",
@@ -75,19 +75,17 @@
         "foundingDate": "{{ $foundingYear }}",
         "description": "@lang('translate.meta_desc')",
         "address": {
-            "@type": "PostalAddress",
+            "@@type": "PostalAddress",
             "streetAddress": "{{ $orgAddress }}",
             "addressCountry": "KW"
         },
-        "areaServed": { "@type": "Country", "name": "KW" },
+        "areaServed": { "@@type": "Country", "name": "KW" },
         "hasOfferCatalog": {
-            "@type": "OfferCatalog",
+            "@@type": "OfferCatalog",
             "name": "@lang('translate.ourservices')",
             "itemListElement": [
                 @foreach(\App\Models\Service::translatedIn(app()->getLocale())->get() as $svc)
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ $svc->title }}" } }@if(!$loop->last)
-,
-@endif
+                    { "@@type": "Offer", "itemOffered": { "@@type": "Service", "name": "{{ $svc->title }}" } }@if(!$loop->last),@endif
                 @endforeach
             ]
         }
@@ -96,13 +94,13 @@
 
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
+        "@@context": "https://schema.org",
+        "@@type": "WebSite",
         "url": "{{ url('/') }}",
         "potentialAction": {
-            "@type": "SearchAction",
+            "@@type": "SearchAction",
             "target": {
-                "@type": "EntryPoint",
+                "@@type": "EntryPoint",
                 "urlTemplate": "{{ url('/') }}/{{ app()->getLocale() }}/search?q={search_term}"
             },
             "query-input": "required name=search_term"

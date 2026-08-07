@@ -10,6 +10,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AddressRequest extends FormRequest
 {
+    protected $id;
+
     public function authorize()
     {
         $this->id = $this->route('id');
@@ -21,7 +23,7 @@ class AddressRequest extends FormRequest
     {
         $rules = [
             'image' => 'required_unless:_method,PUT|image',
-            'phone' => 'required_unless:_method,PUT|numeric',
+            'phone' => 'required_unless:_method,PUT|string|max:50',
             'email' => 'required_unless:_method,PUT|email',
         ];
         foreach (locales() as $key => $language) {

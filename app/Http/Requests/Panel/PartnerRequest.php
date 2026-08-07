@@ -10,6 +10,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class PartnerRequest extends FormRequest
 {
+    protected $id;
+
     public function authorize()
     {
         $this->id = $this->route('id');

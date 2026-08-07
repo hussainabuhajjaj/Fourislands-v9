@@ -10,6 +10,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductRequest extends FormRequest
 {
+    protected $id;
+
     /**
      * Determine if the user is authorized to make this request.
      *

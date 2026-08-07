@@ -17,6 +17,7 @@ return [
     'new_proposal' => ' هناك عرض جديد على تجربة :tajroba_request',
     'accept_proposal' => 'تم قبول عرضك على تجربة :tajroba_request',
 
+    'invalid_request' => 'طلب غير صالح. يرجى المحاولة مرة أخرى.',
     'new_meesage' => ' هناك رسالة جديدة من :user على تجربة :tajroba_request',
 
 

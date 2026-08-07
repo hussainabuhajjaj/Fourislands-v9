@@ -14,6 +14,7 @@ return [
     'new_comment' => 'There is a new comment on experience :tajroba',
     'new_proposal' => 'There is a new proposal on experience :tajroba_request',
     'accept_proposal' => 'Your proposal has been accepted on experience :tajroba_request',
+    'invalid_request' => 'Invalid request. Please try again.',
     'new_meesage' => 'There is a new message from :user on experience :tajroba_request',
 
 ];

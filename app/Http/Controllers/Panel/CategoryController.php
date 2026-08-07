@@ -27,6 +27,7 @@ class CategoryController extends Controller
     {
         $data = $request->only(Category::FILLABLE);
         $data['slug'] = Str::slug($request->get('slug') ?: $request->get('name_en'));
+        $data['is_active'] = $request->boolean('is_active');
         $category = Category::create($data)->createTranslation($request);
         return $this->response_api(true, __('front.success'), StatusCodes::OK);
     }
@@ -42,6 +43,7 @@ class CategoryController extends Controller
     {
         $data = $request->only(Category::FILLABLE);
         $data['slug'] = Str::slug($request->get('slug') ?: $request->get('name_en'));
+        $data['is_active'] = $request->boolean('is_active');
         $category = Category::updateOrCreate(['id' => $id], $data)->createTranslation($request);
         return $this->response_api(true, __('front.success'), StatusCodes::OK);
     }

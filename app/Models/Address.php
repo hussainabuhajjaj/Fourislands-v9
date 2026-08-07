@@ -10,7 +10,7 @@ class Address extends Model
 {
     use Translatable;
 
-    const FILLABLE = ['image'];
+    const FILLABLE = ['image', 'main_image', 'phone', 'email'];
     public $translatedAttributes = ['city', 'address'];
     public $translationModel = AddressTranslation::class;
 

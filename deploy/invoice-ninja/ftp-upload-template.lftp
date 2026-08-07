@@ -1,0 +1,29 @@
+# Usage:
+#   lftp -f ftp-upload-template.lftp
+#
+# Replace every __PLACEHOLDER__ value before running.
+# Do not commit a credential-filled copy.
+
+set ftp:ssl-allow true
+set ftp:ssl-force false
+set ssl:verify-certificate true
+set net:max-retries 3
+set net:timeout 30
+set xfer:clobber true
+
+open -u "__FTP_USER__","__FTP_PASSWORD__" __FTP_HOST__:__FTP_PORT__
+
+# Change to the cPanel target application root, for example:
+#   /home/CPANEL_USER/invoiceninja
+#   /invoiceninja
+#   /public_html/invoices
+cd __REMOTE_APP_ROOT__
+
+# Preferred upload: one archive plus helper files.
+put invoiceninja-v5.13.26.tar
+put cpanel-preflight.php
+put env.cpanel.example
+put deploy-manifest.json
+put CPANEL_DEPLOYMENT.md
+
+bye

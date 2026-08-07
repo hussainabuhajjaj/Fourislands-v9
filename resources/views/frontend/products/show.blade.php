@@ -6,7 +6,7 @@
 @push('front_css')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
+    "@@context": "https://schema.org",
     "@type": "Product",
     "name": "{{ $products->title }}",
     "description": "{{ strip_tags(Str::limit($products->description, 200)) }}",

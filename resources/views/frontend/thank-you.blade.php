@@ -64,7 +64,7 @@
 
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "WebPage",
         "name": "@lang('translate.thank_you_title')",
         "description": "@lang('translate.thank_you_desc')",

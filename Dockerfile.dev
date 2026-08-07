@@ -1,0 +1,40 @@
+FROM php:8.3-fpm-alpine
+
+RUN apk add --no-cache \
+    bash \
+    curl \
+    freetype \
+    freetype-dev \
+    libjpeg-turbo \
+    libjpeg-turbo-dev \
+    libpng \
+    libpng-dev \
+    libzip \
+    libzip-dev \
+    linux-headers \
+    $PHPIZE_DEPS \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        bcmath \
+        exif \
+        gd \
+        gettext \
+        intl \
+        mysqli \
+        pdo_mysql \
+        zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apk del --no-cache freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev linux-headers $PHPIZE_DEPS
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+RUN addgroup -g 1000 -S app && adduser -u 1000 -S -G app app
+
+WORKDIR /var/www/html
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

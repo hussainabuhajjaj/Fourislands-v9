@@ -20,6 +20,7 @@ class SettingsController extends Controller
     {
         $data = $request->all();
         unset($data['_token']);
+        unset($data['_method']);
         if ($file = $request->file('site_logo')){
             $data['site_logo'] = $file->move(public_path() , 'logo.png');
         }
@@ -29,5 +30,9 @@ class SettingsController extends Controller
         return back();
     }
 
+    public function update(Request $request, Setting $setting)
+    {
+        return $this->store($request);
+    }
 
 }

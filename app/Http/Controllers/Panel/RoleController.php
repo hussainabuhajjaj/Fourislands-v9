@@ -31,7 +31,7 @@ class RoleController extends Controller
 
         if (isset($request->permissions) && count($request->permissions) > 0 ){
             foreach ($request->permissions as $item) {
-                $permission = Permission::firstOrCreate(['name' => $item]);
+                $permission = Permission::firstOrCreate(['name' => $item, 'guard_name' => 'admin']);
                 if (!isset($permission)) {
                     return $this->response_api(false, 'حدث خطأ أثناء المعالجة',StatusCodes::INTERNAL_ERROR);
                 }
@@ -57,7 +57,7 @@ class RoleController extends Controller
 
         if (isset($request->permissions) && count($request->permissions) > 0 ){
             foreach ($request->permissions as $item) {
-                $permission = Permission::firstOrCreate(['name' => $item]);
+                $permission = Permission::firstOrCreate(['name' => $item, 'guard_name' => 'admin']);
                 if (!isset($permission)) {
                     return $this->response_api(false, 'حدث خطأ أثناء المعالجة',StatusCodes::INTERNAL_ERROR);
                 }

@@ -25,6 +25,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $data = $request->only((new Testimonial)->getFillable());
+        $data['is_active'] = $request->boolean('is_active');
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('testimonials');
@@ -46,6 +47,7 @@ class TestimonialController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->only((new Testimonial)->getFillable());
+        $data['is_active'] = $request->boolean('is_active');
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('testimonials');

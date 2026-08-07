@@ -74,15 +74,13 @@ class PromotionalEmailController extends Controller
 
     public function store(SendPromotionalEmailRequest $request)
     {
-        $validatedRecipients = collect($request->recipients)->map(function ($recipient) {
+        $recipients = $request->recipients ?? [];
+
+        $validatedRecipients = collect($recipients)->map(function ($recipient) {
             return filter_var(trim($recipient), FILTER_VALIDATE_EMAIL);
         })->filter()->values()->all();
 
-        $invalidEmails = array_diff($request->recipients, $validatedRecipients);
-
-        if (!empty($invalidEmails)) {
-            return $this->response_api(true, 'Invalid email addresses: ' . implode(', ', $invalidEmails), StatusCodes::VALIDATION_ERROR);
-        }
+        $invalidEmails = array_diff($recipients, $validatedRecipients);
 
         $attachments = [];
 
@@ -118,11 +116,60 @@ class PromotionalEmailController extends Controller
         return $this->response_api(true, __('front.Success'), StatusCodes::OK);
     }
 
-    public function update($id)
+    public function edit($id)
     {
         $data['title'] = __('Update Email Template');
         $data['item'] = PromotionalEmail::findOrFail($id);
+        $data['users'] = User::all();
         return view('panel.promotional-email.create', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $promotionalEmail = PromotionalEmail::findOrFail($id);
+        $recipients = collect($request->recipients ?? [])
+            ->map(fn ($recipient) => filter_var(trim($recipient), FILTER_VALIDATE_EMAIL))
+            ->filter()
+            ->values()
+            ->all();
+
+        $attachments = $promotionalEmail->attachments ? json_decode($promotionalEmail->attachments, true) : [];
+
+        if ($request->hasFile('attachments')) {
+            $attachments = [];
+            foreach ($request->file('attachments') as $attachment) {
+                $path = $attachment->store('public');
+                $attachments[] = [
+                    'name' => $attachment->getClientOriginalName(),
+                    'path' => $path,
+                    'type' => $attachment->getClientMimeType(),
+                ];
+            }
+        }
+
+        $promotionalEmail->update([
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'recipients' => json_encode($recipients),
+            'attachments' => $attachments ? json_encode($attachments) : null,
+            'total_recipients' => count($recipients),
+        ]);
+
+        return $this->response_api(true, __('front.success'), StatusCodes::OK);
+    }
+
+    public function destroy($id)
+    {
+        $item = PromotionalEmail::findOrFail($id);
+
+        return $item->delete()
+            ? $this->response_api(true, __('front.success'), StatusCodes::OK)
+            : $this->response_api(false, __('front.error'), StatusCodes::INTERNAL_ERROR);
+    }
+
+    public function datatable()
+    {
+        return getDatatable(PromotionalEmail::query());
     }
 
 }

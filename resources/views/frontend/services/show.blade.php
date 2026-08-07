@@ -6,8 +6,8 @@
 @push('front_css')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Service",
+    "@@context": "https://schema.org",
+    "@@type": "Service",
     "name": "{{ $services->title }}",
     "description": "{{ $services->short_description ?: strip_tags($services->description) }}",
     "provider": {
@@ -18,8 +18,8 @@
 </script>
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
     "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "@lang('translate.home')", "item": "{{ url('/'.app()->getLocale()) }}" },
         { "@type": "ListItem", "position": 2, "name": "@lang('translate.services')", "item": "{{ route('home.services.index') }}" },

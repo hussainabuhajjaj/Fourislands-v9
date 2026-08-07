@@ -2,6 +2,9 @@ User-agent: *
 Disallow: /panel
 Disallow: /admin
 Disallow: /storage
+Disallow: /image/
+Disallow: /newsletter
+Disallow: /unsubscribe/
 
 Allow: /
 

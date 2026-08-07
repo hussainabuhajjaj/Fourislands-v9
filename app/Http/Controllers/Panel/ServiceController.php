@@ -47,7 +47,7 @@ class ServiceController extends Controller
             unset($data['image']);
         }
         if ($file1 = $request->file('large_image')) {
-            $data['large_image'] = $file->store('large_image');
+            $data['large_image'] = $file1->store('large_image');
 
         } else {
             unset($data['large_image']);

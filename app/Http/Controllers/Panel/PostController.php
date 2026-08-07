@@ -30,6 +30,7 @@ class PostController extends Controller
         $data = $request->only(Post::FILLABLE);
         $data['slug'] = Str::slug($request->get('slug') ?: $request->get('title_en'));
         $data['published_at'] = $request->get('published_at') ?: now();
+        $data['is_published'] = $request->boolean('is_published');
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('posts');
@@ -53,6 +54,7 @@ class PostController extends Controller
     {
         $data = $request->only(Post::FILLABLE);
         $data['slug'] = Str::slug($request->get('slug') ?: $request->get('title_en'));
+        $data['is_published'] = $request->boolean('is_published');
 
         if ($file = $request->file('image')) {
             $data['image'] = $file->store('posts');
