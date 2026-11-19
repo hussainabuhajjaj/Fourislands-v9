@@ -16,6 +16,11 @@ class Faq extends Model
 
     protected $fillable = self::FILLABLE;
 
+    public function scopeActive($query)
+    {
+        return $query->orderBy('ordering');
+    }
+
     public function createTranslation(Request $request)
     {
         foreach (locales() as $key => $language) {
