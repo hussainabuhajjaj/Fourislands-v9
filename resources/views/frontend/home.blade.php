@@ -102,7 +102,7 @@
 
                 <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($services->take(6) as $item)
-                        <a href="{{ route('home.services.show', $item->id) }}" class="card-hover group block overflow-hidden no-underline">
+                        <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="card-hover group block overflow-hidden no-underline">
                             @if(@$item->image)
                                 <img class="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset(@$item->image) }}" alt="{{ $item->title }}" onerror="this.src='{{ asset('NewFront/img/service.jpg') }}'">
                             @else
@@ -179,7 +179,7 @@
 
                 <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach($products->take(8) as $item)
-                        <a href="{{ route('home.products.show', $item->id) }}" class="card-hover group block overflow-hidden no-underline">
+                        <a href="{{ route('home.products.show', ['id' => $item->id]) }}" class="card-hover group block overflow-hidden no-underline">
                             @if(@$item->image)
                                 <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset(@$item->image) }}" alt="{{ $item->title }}" onerror="this.src='{{ asset('NewFront/img/services/1.jpg') }}'">
                             @else
