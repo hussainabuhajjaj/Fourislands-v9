@@ -65,7 +65,7 @@
                         <ul class="space-y-0">
                             @foreach($allProducts as $item)
                                 <li class="py-2.5 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                                    <a href="{{ route('home.products.show', $item->id) }}" class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $products->id ? 'text-sky-700 font-semibold' : '' }}">
+                                    <a href="{{ route('home.products.show', ['id' => $item->id]) }}" class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $products->id ? 'text-sky-700 font-semibold' : '' }}">
                                         <svg class="w-3.5 h-3.5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                         {{ $item->title }}
                                     </a>

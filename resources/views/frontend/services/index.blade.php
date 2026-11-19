@@ -25,7 +25,7 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse($services as $item)
-                    <a href="{{ route('home.services.show', $item->id) }}" class="card-hover group block no-underline overflow-hidden">
+                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="card-hover group block no-underline overflow-hidden">
                         @if(@$item->image)
                             <img class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset(@$item->image) }}" alt="{{ $item->title }}" onerror="this.src='{{ asset('NewFront/img/1.jpg') }}'">
                         @elseif($item->icon)

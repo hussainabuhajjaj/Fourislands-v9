@@ -22,13 +22,13 @@
             </div>
 
             <div class="hidden items-center justify-center gap-1 lg:flex" aria-label="Primary navigation">
-                <a class="nav-link {{ request()->routeIs('home.home') ? 'active' : '' }}" href="{{ route('home.home') }}">@lang('translate.home')</a>
+                <a class="nav-link {{ request()->routeIs('home.home', 'plain.home.home') ? 'active' : '' }}" href="{{ route('home.home') }}">@lang('translate.home')</a>
                 <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('home.home') }}/about">@lang('translate.about')</a>
-                <a class="nav-link {{ request()->routeIs('home.services.*') ? 'active' : '' }}" href="{{ route('home.services.index') }}">@lang('translate.services')</a>
-                <a class="nav-link {{ request()->routeIs('home.products.*') ? 'active' : '' }}" href="{{ route('home.products.index') }}">@lang('translate.products')</a>
-                <a class="nav-link {{ request()->routeIs('home.faq') ? 'active' : '' }}" href="{{ route('home.faq') }}">@lang('translate.faq')</a>
-                <a class="nav-link {{ request()->routeIs('home.blog.*') ? 'active' : '' }}" href="{{ route('home.blog.index') }}">@lang('translate.blog')</a>
-                <a class="nav-link {{ request()->routeIs('home.contacts.*') ? 'active' : '' }}" href="{{ route('home.contacts.index') }}">@lang('translate.contact')</a>
+                <a class="nav-link {{ request()->routeIs('home.services.*', 'plain.home.services.*') ? 'active' : '' }}" href="{{ route('home.services.index') }}">@lang('translate.services')</a>
+                <a class="nav-link {{ request()->routeIs('home.products.*', 'plain.home.products.*') ? 'active' : '' }}" href="{{ route('home.products.index') }}">@lang('translate.products')</a>
+                <a class="nav-link {{ request()->routeIs('home.faq', 'plain.home.faq') ? 'active' : '' }}" href="{{ route('home.faq') }}">@lang('translate.faq')</a>
+                <a class="nav-link {{ request()->routeIs('home.blog.*', 'plain.home.blog.*') ? 'active' : '' }}" href="{{ route('home.blog.index') }}">@lang('translate.blog')</a>
+                <a class="nav-link {{ request()->routeIs('home.contacts.*', 'plain.home.contacts.*') ? 'active' : '' }}" href="{{ route('home.contacts.index') }}">@lang('translate.contact')</a>
                 <a href="{{ route('home.search') }}" class="nav-link nav-icon-link" aria-label="@lang('translate.search')">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </a>
