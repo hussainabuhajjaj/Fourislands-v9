@@ -69,4 +69,9 @@ class LocalizedRoutesTest extends TestCase
         $this->get('/es')->assertOk();
         $this->get('/es/about')->assertOk();
     }
+
+    public function test_quote_request_page_renders(): void
+    {
+        $this->get('/quote-request')->assertOk();
+    }
 }
