@@ -1,0 +1,4 @@
+# Database dumps are imported on first boot and must never be committed.
+*.sql
+*.sql.gz
+*.zip
