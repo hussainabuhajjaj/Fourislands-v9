@@ -1,12 +1,24 @@
+@php
+    $isArabic = app()->getLocale() === 'ar';
+    $localeSegment = request()->segment(1);
+    if (in_array($localeSegment, ['ar', 'en'], true)) {
+        $isArabic = $localeSegment === 'ar';
+        app()->setLocale($localeSegment);
+    }
+@endphp
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() === 'ar') dir="rtl" @endif>
+<html lang="{{ $isArabic ? 'ar' : 'en' }}" @if($isArabic) dir="rtl" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>404 - @lang('translate.fourislands')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    @if($isArabic)
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    @else
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    @endif
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,13 +29,16 @@
                         gold: { 500: '#C5A35A', 400: '#D4B978' },
                         brand: { blue: '#2563EB', 'blue-hover': '#1D4ED8' },
                     },
-                    fontFamily: { heading: ['Playfair Display', 'serif'], body: ['Inter', 'sans-serif'] },
+                    fontFamily: { heading: ['{{ $isArabic ? 'Tajawal' : 'Playfair Display' }}', '{{ $isArabic ? 'sans-serif' : 'serif' }}'], body: ['{{ $isArabic ? 'Tajawal' : 'Inter' }}', 'sans-serif'] },
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { font-family: '{{ $isArabic ? 'Tajawal' : 'Inter' }}', sans-serif; -webkit-font-smoothing: antialiased; }
+        @if($isArabic)
+        h1, h2, h3, h4, h5, h6 { font-family: 'Tajawal', sans-serif; }
+        @endif
     </style>
 </head>
 <body class="bg-navy-900 min-h-screen flex items-center justify-center p-6">

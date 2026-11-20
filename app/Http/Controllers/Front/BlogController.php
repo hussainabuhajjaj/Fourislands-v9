@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -19,8 +20,10 @@ class BlogController extends Controller
         return view('frontend.blog.index', $data);
     }
 
-    public function show($slug)
+    public function show(Request $request)
     {
+        $slug = $request->route('slug');
+
         $data['post'] = Post::published()->translatedIn(app()->getLocale())->with('category', 'translations')
             ->where('slug', $slug)
             ->firstOrFail();
@@ -29,8 +32,10 @@ class BlogController extends Controller
         return view('frontend.blog.show', $data);
     }
 
-    public function category($slug)
+    public function category(Request $request)
     {
+        $slug = $request->route('slug');
+
         $category = Category::translatedIn(app()->getLocale())->where('slug', $slug)->where('is_active', true)->firstOrFail();
         $data['posts'] = Post::published()->translatedIn(app()->getLocale())->where('category_id', $category->id)
             ->with('category', 'translations')

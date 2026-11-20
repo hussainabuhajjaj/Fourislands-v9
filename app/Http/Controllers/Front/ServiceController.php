@@ -14,10 +14,12 @@ class ServiceController extends Controller
         return view('frontend.services.index',compact('services'));
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->route('id');
+
         $data['allservices'] = Service::translatedIn(app()->getLocale())->get();
-        $data['services'] = Service::translatedIn(app()->getLocale())->find($id);
+        $data['services'] = Service::translatedIn(app()->getLocale())->findOrFail($id);
         return view('frontend.services.show',$data);
     }
 }

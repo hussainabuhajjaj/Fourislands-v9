@@ -261,5 +261,15 @@ return [
 	'quick_reply' => 'Quick reply via WhatsApp',
 	'frequently_asked' => 'Frequently Asked Questions',
 	'view_all_faq' => 'View All FAQs',
+	'thank_you_title' => 'Thank You',
+	'thank_you_desc' => 'We have received your request. Our team will contact you shortly.',
+	'thank_you_body' => 'Thank you for reaching out to Four Islands. We appreciate your interest and will get back to you as soon as possible.',
+	'whatsapp_thank_you' => 'Thank you for contacting us. Can I help you with anything else?',
+	'back_to_home' => 'Back to Home',
+	'ready_start' => 'Ready to Get Started?',
+	'your_company' => 'Your company',
+	'phone_example' => 'Phone / WhatsApp',
+	'your_name' => 'Your name',
+	'whatsapp_quote_message' => 'Hello! I would like to get a quote.',
 
 ];

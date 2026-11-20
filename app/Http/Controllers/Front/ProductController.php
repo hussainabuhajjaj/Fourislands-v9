@@ -14,10 +14,12 @@ class ProductController extends Controller
         return view('frontend.products.index',compact('products'));
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->route('id');
+
         $data['allProducts'] = Product::translatedIn(app()->getLocale())->get();
-        $data['products']    = Product::translatedIn(app()->getLocale())->find($id);
+        $data['products']    = Product::translatedIn(app()->getLocale())->findOrFail($id);
         return view('frontend.products.show',$data);
     }
 }
