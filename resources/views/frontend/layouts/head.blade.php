@@ -114,6 +114,9 @@
             var stored = localStorage.getItem('theme');
             var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             if (theme === 'dark') document.documentElement.classList.add('dark');
+            if ('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                document.documentElement.classList.add('js-reveal');
+            }
         })();
     </script>
 

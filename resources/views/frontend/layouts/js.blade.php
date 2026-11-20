@@ -18,12 +18,17 @@
         if (p) p.classList.add('opacity-0', 'pointer-events-none');
     });
 
-    // — Scroll to top
+    // — Header state on scroll + scroll-to-top
     var scrollTop = document.getElementById('scrollTop');
+    var navbar = document.getElementById('navbar');
+    function updateScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        if (navbar) navbar.classList.toggle('is-scrolled', y > 24);
+        if (scrollTop) scrollTop.classList.toggle('active', y > 400);
+    }
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
     if (scrollTop) {
-        window.addEventListener('scroll', function() {
-            scrollTop.classList.toggle('active', window.scrollY > 400);
-        });
         scrollTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
@@ -135,19 +140,70 @@
         el.style.backgroundImage = 'url(' + el.getAttribute('data-background') + ')';
     });
 
-    // — Scroll animations (IntersectionObserver)
-    if (window.IntersectionObserver) {
-        var animObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    // — Scroll reveal for existing content (progressive enhancement)
+    if (document.documentElement.classList.contains('js-reveal') && window.IntersectionObserver) {
+        var revealSelector = [
+            'main .section-tag',
+            'main .section-title',
+            'main .section-desc',
+            'main h1',
+            'main h2',
+            'main .card-hover',
+            'main .card',
+            'main .glass-panel',
+            'main .metric-tile',
+            'main .feature-line',
+            'main .image-frame',
+            'main .faq-item',
+            'main .btn',
+            'main .btn-primary',
+            'main .btn-outline',
+            'main .btn-gold',
+            'main .clients-carousel',
+            'main .testimonials-carousel'
+        ].join(',');
 
-        document.querySelectorAll('.scroll-fade, .scroll-fade-left, .scroll-fade-right').forEach(function(el) {
-            animObserver.observe(el);
-            el.classList.add('scroll-fade');
+        var candidates = Array.prototype.slice.call(document.querySelectorAll(revealSelector));
+        var seen = [];
+        candidates.forEach(function(el) {
+            if (seen.indexOf(el) === -1) seen.push(el);
+        });
+
+        // Keep only outermost matches so nested buttons/cards do not animate twice.
+        var targets = seen.filter(function(el) {
+            return !seen.some(function(other) { return other !== el && other.contains(el); });
+        });
+
+        var groups = [];
+        targets.forEach(function(el) {
+            var parent = el.parentElement;
+            var group = null;
+            for (var i = 0; i < groups.length; i++) {
+                if (groups[i].parent === parent) { group = groups[i]; break; }
+            }
+            if (!group) { group = { parent: parent, items: [] }; groups.push(group); }
+            group.items.push(el);
+        });
+
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                var el = entry.target;
+                el.classList.add('is-revealing');
+                revealObserver.unobserve(el);
+                el.addEventListener('animationend', function() {
+                    el.classList.remove('reveal', 'is-revealing');
+                    el.style.removeProperty('--reveal-delay');
+                }, { once: true });
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+        groups.forEach(function(group) {
+            group.items.forEach(function(el, index) {
+                el.classList.add('reveal');
+                el.style.setProperty('--reveal-delay', Math.min(index, 4) * 70 + 'ms');
+                revealObserver.observe(el);
+            });
         });
     }
 

@@ -116,7 +116,18 @@
   border: 1px solid rgba(255, 255, 255, .12);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  transition: border-color .2s ease, background-color .2s ease;
+  transition: height .28s cubic-bezier(.22, 1, .36, 1), background-color .28s ease, border-color .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
+}
+#navbar.is-scrolled .nav-shell {
+  height: 3.5rem;
+  background: rgba(15, 23, 42, .94);
+  border-color: rgba(212, 185, 120, .28);
+  box-shadow: 0 12px 32px -20px rgba(2, 6, 23, .9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+@media (min-width: 1024px) {
+  #navbar.is-scrolled .nav-shell { height: 3.75rem; }
 }
 .nav-link {
   position: relative;
@@ -351,15 +362,16 @@
 .border-theme { border-color: rgb(var(--border-color)); }
 .card-theme { background-color: rgb(var(--card-bg)); }
 
-/* ====== SCROLL ANIMATIONS ====== */
-.scroll-fade {
+/* ====== SCROLL REVEAL ANIMATIONS ====== */
+html.js-reveal .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.scroll-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+html.js-reveal .reveal.is-revealing {
+  animation: reveal-up .6s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms) both;
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 /* ====== COOKIE CONSENT ====== */
@@ -667,5 +679,5 @@ summary:focus-visible,
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
-  .scroll-fade { opacity: 1 !important; transform: none !important; }
+  html.js-reveal .reveal { opacity: 1 !important; animation: none !important; }
 }
