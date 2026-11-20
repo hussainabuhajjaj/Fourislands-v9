@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@hasSection('page_title') @yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')</title>
     <meta name="description" content="@hasSection('meta_desc') @yield('meta_desc') @else @lang('translate.meta_desc') @endif">
+    <meta name="color-scheme" content="light dark">
 
     <meta property="og:title" content="@hasSection('page_title') @yield('page_title') | @endif @lang('translate.fourislands') - @lang('translate.prof')">
     <meta property="og:description" content="@hasSection('meta_desc') @yield('meta_desc') @else @lang('translate.meta_desc') @endif">
@@ -110,8 +111,8 @@
 
     <script>
         (function() {
-            var theme = localStorage.getItem('theme');
-            if (!theme) theme = 'light';
+            var stored = localStorage.getItem('theme');
+            var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             if (theme === 'dark') document.documentElement.classList.add('dark');
         })();
     </script>
@@ -123,7 +124,7 @@
 
     <link rel="shortcut icon" href="{{ asset('NewFront/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('NewFront/css/plugins.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v={{ filemtime(public_path('css/app.css')) }}">
 
     @stack('front_css')
 

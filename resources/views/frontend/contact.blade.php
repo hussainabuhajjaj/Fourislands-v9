@@ -24,7 +24,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
                 <span class="section-tag">@lang('translate.get_in_touch')</span>
@@ -114,7 +114,7 @@
         </div>
     </section>
 
-    <section class="pb-16 sm:pb-24 -mt-8 bg-white dark:bg-slate-950">
+    <section class="pb-16 sm:pb-24 -mt-8 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div id="bauen-contactMap" class="w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden"></div>
         </div>

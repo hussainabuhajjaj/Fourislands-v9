@@ -17,7 +17,7 @@
     </section>
 
     @if($about = pages()->where('id', '36')->first())
-        <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+        <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     <div>
@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900">
+    <section class="py-16 sm:py-24 bg-alt dark:bg-slate-900">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="section-tag">@lang('translate.contact_us')</span>
             <h2 class="section-title text-navy-950 dark:text-white">@lang('translate.lead_title')</h2>

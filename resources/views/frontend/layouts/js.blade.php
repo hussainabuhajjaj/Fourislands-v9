@@ -2,13 +2,15 @@
 <script src="{{ asset('NewFront/js/popper.min.js') }}"></script>
 <script src="{{ asset('NewFront/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('NewFront/js/owl.carousel.min.js') }}"></script>
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}?v={{ filemtime(public_path('js/app.js')) }}"></script>
 
 @stack('front_js')
 
 <script>
 (function() {
     'use strict';
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // — Preloader
     window.addEventListener('load', function() {
@@ -23,7 +25,7 @@
             scrollTop.classList.toggle('active', window.scrollY > 400);
         });
         scrollTop.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
     }
 
@@ -94,7 +96,7 @@
                 this.setAttribute('aria-expanded', !isOpen);
                 if (!isOpen) {
                     setTimeout(function() {
-                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        item.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
                     }, 100);
                 }
             } else {
@@ -120,8 +122,11 @@
             var isSun = el.id === 'sunIcon' || el.id === 'sunIconM';
             el.classList.toggle('hidden', theme === 'dark' ? isSun : !isSun);
         });
+        document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(function(btn) {
+            btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        });
     }
-    var currentTheme = localStorage.getItem('theme') || 'light';
+    var currentTheme = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(currentTheme);
     document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -152,15 +157,17 @@
     if (typeof $ !== 'undefined') {
         $('.slider-fade .owl-carousel').owlCarousel({
             items: 1, loop: true, dots: false, margin: 0,
-            autoplay: true, smartSpeed: 600, animateOut: 'fadeOut',
+            autoplay: !reduceMotion, smartSpeed: 600, animateOut: 'fadeOut',
             nav: true, rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             navText: [
-                '<i class="fas fa-chevron-left"></i>',
-                '<i class="fas fa-chevron-right"></i>'
+                '<i class="fas fa-chevron-left" aria-hidden="true"></i>',
+                '<i class="fas fa-chevron-right" aria-hidden="true"></i>'
             ]
+        }).find('.owl-nav button').attr('aria-label', function() {
+            return $(this).hasClass('owl-prev') ? '{{ app()->getLocale() == 'ar' ? 'الشريحة السابقة' : 'Previous slide' }}' : '{{ app()->getLocale() == 'ar' ? 'الشريحة التالية' : 'Next slide' }}';
         });
         $('.testimonials-carousel').owlCarousel({
-            loop: true, margin: 20, mouseDrag: true, autoplay: true,
+            loop: true, margin: 20, mouseDrag: true, autoplay: !reduceMotion,
             dots: true, nav: false, items: 1,
             rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             responsive: {
@@ -169,7 +176,7 @@
             }
         });
         $('.clients-carousel').owlCarousel({
-            loop: true, margin: 30, mouseDrag: true, autoplay: true,
+            loop: true, margin: 30, mouseDrag: true, autoplay: !reduceMotion,
             dots: false, nav: false,
             rtl: {{ app()->getLocale() == 'ar' ? 'true' : 'false' }},
             responsive: {

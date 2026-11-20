@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <div class="lg:col-span-2 space-y-8">
@@ -52,7 +52,7 @@
                             @lang('translate.inquire')
                             <svg class="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                         </a>
-                        <a href="{{ route('home.products.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-sky-700 hover:text-sky-700 transition-all">
+                        <a href="{{ route('home.products.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-sky-700 hover:text-sky-700 dark:hover:text-sky-300 transition-all">
                             <svg class="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                             @lang('translate.ourproducts')
                         </a>
@@ -65,7 +65,7 @@
                         <ul class="space-y-0">
                             @foreach($allProducts as $item)
                                 <li class="py-2.5 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                                    <a href="{{ route('home.products.show', ['id' => $item->id]) }}" class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $products->id ? 'text-sky-700 font-semibold' : '' }}">
+                                    <a href="{{ route('home.products.show', ['id' => $item->id]) }}" class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-300 transition-colors {{ $item->id == $products->id ? 'text-sky-700 font-semibold' : '' }}">
                                         <svg class="w-3.5 h-3.5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                         {{ $item->title }}
                                     </a>

@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <div class="lg:col-span-2 space-y-8">
@@ -97,7 +97,7 @@
                     </div>
 
                     @if($services->features && count($services->features) > 0)
-                        <div class="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 sm:p-8">
+                        <div class="bg-alt dark:bg-slate-900 rounded-xl p-6 sm:p-8">
                             <h3 class="font-heading text-xl font-bold text-navy-950 dark:text-white mb-5">@lang('translate.key_features')</h3>
                             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 @foreach($services->features as $feature)
@@ -115,7 +115,7 @@
                             @lang('translate.get_quote')
                             <svg class="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                         </a>
-                        <a href="{{ route('home.contacts.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-sky-700 hover:text-sky-700 transition-all">
+                        <a href="{{ route('home.contacts.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-sky-700 hover:text-sky-700 dark:hover:text-sky-300 transition-all">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.272.527-.74.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
                             @lang('translate.contact_us')
                         </a>
@@ -128,7 +128,7 @@
                         <ul class="space-y-0">
                             @foreach($allservices as $item)
                                 <li class="py-2.5 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $services->id ? 'text-sky-700 font-semibold' : '' }}">
+                                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-300 transition-colors {{ $item->id == $services->id ? 'text-sky-700 font-semibold' : '' }}">
                                         @if($item->icon)
                                             <i class="{{ $item->icon }} text-sky-600 w-4 text-center"></i>
                                         @else
@@ -171,7 +171,7 @@
     </section>
 
     @if($testimonials->count() > 0)
-        <section class="bg-slate-50 dark:bg-slate-900 py-16 sm:py-24">
+        <section class="bg-alt dark:bg-slate-900 py-16 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="section-tag justify-center before:hidden">@lang('translate.testimonials')</span>
@@ -181,13 +181,13 @@
                     @foreach($testimonials as $t)
                         <div class="card p-6 sm:p-8 mx-2">
                             <div class="flex items-center gap-4 mb-4">
-                                <span class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700 shrink-0">
+                                <span class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700 dark:text-sky-300 shrink-0">
                                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
                                 </span>
                                 <div>
                                     <h4 class="font-heading font-bold text-navy-950 dark:text-white">{{ $t->name }}</h4>
                                     @if($t->position || $t->company)
-                                        <p class="text-xs text-slate-500">{{ $t->position }}{{ $t->position && $t->company ? ', ' : '' }}{{ $t->company }}</p>
+                                        <p class="text-xs text-slate-600">{{ $t->position }}{{ $t->position && $t->company ? ', ' : '' }}{{ $t->company }}</p>
                                     @endif
                                 </div>
                                 @if($t->rating)
@@ -207,7 +207,7 @@
     @endif
 
     @if($faqs->count() > 0)
-        <section class="bg-white dark:bg-slate-950 py-16 sm:py-24">
+        <section class="bg-surface dark:bg-slate-950 py-16 sm:py-24">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <span class="section-tag">@lang('translate.faq')</span>

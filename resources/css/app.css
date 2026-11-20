@@ -499,3 +499,128 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ============================================================
+   2026 UI/UX HARDENING — contrast, focus, motion, consistency
+   ============================================================ */
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+::selection {
+  background: rgba(197, 163, 90, .28);
+  color: rgb(var(--text-primary));
+}
+
+/* Keyboard focus: always visible, including on components that reset outline */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #C5A35A !important;
+  outline-offset: 3px !important;
+}
+
+/* Skip-to-content link */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  inset-inline-start: 1rem;
+  z-index: 100000;
+  border-radius: .375rem;
+  background: #C5A35A;
+  color: #0F172A;
+  padding: .75rem 1rem;
+  font-weight: 800;
+  font-size: .875rem;
+  text-decoration: none;
+  transition: top .18s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Dark mode: keep muted text legible on dark surfaces (WCAG AA) */
+.dark .text-slate-500,
+.dark .text-slate-600,
+.dark .text-gray-500,
+.dark .text-gray-600,
+.dark .text-navy-500,
+.dark .text-navy-600 { color: #94A3B8; }
+
+.dark .text-slate-400,
+.dark .text-gray-400 { color: #CBD5E1; }
+
+/* Owl carousel controls: explicit, high-contrast, theme-safe */
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, .28) !important;
+  background: rgba(15, 23, 42, .55) !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+  margin-inline: .35rem;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.owl-carousel .owl-nav button.owl-prev:hover,
+.owl-carousel .owl-nav button.owl-next:hover {
+  background: #C5A35A !important;
+  color: #0F172A !important;
+  transform: translateY(-1px);
+}
+.owl-carousel .owl-dots .owl-dot span {
+  background: rgba(148, 163, 184, .55);
+  transition: background-color .2s ease, width .2s ease;
+}
+.owl-carousel .owl-dots .owl-dot.active span {
+  background: #C5A35A;
+  width: 1.5rem;
+}
+
+/* Lightweight rich-text styles for content blocks (no typography plugin) */
+.prose {
+  color: rgb(var(--text-primary));
+  line-height: 1.75;
+}
+.prose p { margin-bottom: 1rem; }
+.prose h2, .prose h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.6rem 0 .75rem;
+}
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+.prose ul, .prose ol { margin: 0 0 1rem 1.35rem; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin-bottom: .35rem; }
+.prose strong { font-weight: 700; }
+.prose a { color: #0284C7; text-decoration: underline; text-underline-offset: 2px; }
+.dark .prose a { color: #7DD3FC; }
+.prose img { max-width: 100%; height: auto; border-radius: .5rem; }
+.prose table { width: 100%; border-collapse: collapse; }
+.prose th, .prose td { border: 1px solid rgb(var(--border-color)); padding: .5rem .75rem; }
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-fade { opacity: 1 !important; transform: none !important; }
+}

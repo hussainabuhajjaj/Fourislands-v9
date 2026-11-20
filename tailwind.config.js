@@ -38,6 +38,10 @@ module.exports = {
           'blue-hover': '#1D4ED8',
           'blue-light': '#DBEAFE',
         },
+        /* Theme-aware surfaces: light values are white / near-white,
+           dark values are defined by the CSS variables in app.css. */
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        alt: 'rgb(var(--bg-alt) / <alpha-value>)',
       },
       fontFamily: {
         heading: ['Plus Jakarta Sans', 'sans-serif'],

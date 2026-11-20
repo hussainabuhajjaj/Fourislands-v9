@@ -4,40 +4,47 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
             <div class="lg:col-span-4">
                 <h5 class="font-heading text-white text-lg mb-4 pb-3 border-b border-gold-500/25">@lang('translate.about_us')</h5>
-                <p class="text-white/55 text-sm leading-relaxed">@lang('translate.footer_desc')</p>
+                <p class="text-white/70 text-sm leading-relaxed">@lang('translate.footer_desc')</p>
+                @php
+                    $isAr = app()->getLocale() === 'ar';
+                    $socialLinks = [
+                        'facebook'  => ['fab fa-facebook-f', $isAr ? 'فيسبوك' : 'Facebook'],
+                        'twitter'   => ['fab fa-twitter', $isAr ? 'تويتر' : 'Twitter'],
+                        'instagram' => ['fab fa-instagram', $isAr ? 'إنستغرام' : 'Instagram'],
+                        'linkedin'  => ['fab fa-linkedin-in', $isAr ? 'لينكد إن' : 'LinkedIn'],
+                    ];
+                    $normalizeSocialUrl = function ($url) {
+                        $url = trim((string) $url);
+                        if ($url === '') return '#';
+                        return preg_match('#^https?://#i', $url) ? $url : 'https://' . ltrim($url, '/');
+                    };
+                @endphp
                 <div class="flex gap-2 mt-4">
-                    @if(getSetting('facebook'))
-                    <a href="{{ getSetting('facebook') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-facebook-f"></i></a>
-                    @endif
-                    @if(getSetting('twitter'))
-                    <a href="{{ getSetting('twitter') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-twitter"></i></a>
-                    @endif
-                    @if(getSetting('instagram'))
-                    <a href="{{ getSetting('instagram') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-instagram"></i></a>
-                    @endif
-                    @if(getSetting('linkedin'))
-                    <a href="{{ getSetting('linkedin') }}" target="_blank" rel="noopener" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/55 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="fab fa-linkedin-in"></i></a>
-                    @endif
+                    @foreach($socialLinks as $key => $social)
+                        @if(getSetting($key))
+                        <a href="{{ $normalizeSocialUrl(getSetting($key)) }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $social[1] }}" title="{{ $social[1] }}" class="w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 text-white/70 text-sm hover:bg-gold-500 hover:text-navy-900 transition-all hover:-translate-y-0.5"><i class="{{ $social[0] }}" aria-hidden="true"></i></a>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="lg:col-span-3 md:col-span-1">
                 <h5 class="font-heading text-white text-lg mb-4 pb-3 border-b border-gold-500/25">@lang('translate.quick_links')</h5>
                 <ul class="space-y-2.5">
-                    <li><a href="{{ route('home.home') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.home')</a></li>
-                    <li><a href="{{ route('home.home') }}/about" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.about')</a></li>
-                    <li><a href="{{ route('home.services.index') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.services')</a></li>
-                    <li><a href="{{ route('home.products.index') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.products')</a></li>
-                    <li><a href="{{ route('home.blog.index') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.blog')</a></li>
-                    <li><a href="{{ route('home.faq') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.faq')</a></li>
-                    <li><a href="{{ route('home.contacts.index') }}" class="text-white/55 text-sm hover:text-gold-500 transition-colors">@lang('translate.contact')</a></li>
+                    <li><a href="{{ route('home.home') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.home')</a></li>
+                    <li><a href="{{ route('home.home') }}/about" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.about')</a></li>
+                    <li><a href="{{ route('home.services.index') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.services')</a></li>
+                    <li><a href="{{ route('home.products.index') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.products')</a></li>
+                    <li><a href="{{ route('home.blog.index') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.blog')</a></li>
+                    <li><a href="{{ route('home.faq') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.faq')</a></li>
+                    <li><a href="{{ route('home.contacts.index') }}" class="text-white/70 text-sm hover:text-gold-500 transition-colors">@lang('translate.contact')</a></li>
                 </ul>
             </div>
             <div class="lg:col-span-5 md:col-span-1">
                 <h5 class="font-heading text-white text-lg mb-4 pb-3 border-b border-gold-500/25">@lang('translate.newsletter_title')</h5>
-                <p class="text-white/55 text-sm leading-relaxed mb-4">@lang('translate.newsletter_desc')</p>
+                <p class="text-white/70 text-sm leading-relaxed mb-4">@lang('translate.newsletter_desc')</p>
                 <form id="footerNewsletterForm" class="flex gap-2 mb-6">
                     @csrf
-                    <input type="email" name="email" class="form-input flex-1 text-sm px-3 py-2 rounded-md border-0 bg-white/10 text-white placeholder:text-white/40 focus:ring-2 focus:ring-gold-500" placeholder="@lang('translate.newsletter_placeholder')" required>
+                    <input type="email" name="email" class="form-input flex-1 text-sm px-3 py-2 rounded-md border-0 bg-white/10 text-white placeholder:text-white/70 focus:ring-2 focus:ring-gold-500" placeholder="@lang('translate.newsletter_placeholder')" required>
                     <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-4 py-2 rounded-md text-sm transition-all whitespace-nowrap">@lang('translate.subscribe')</button>
                 </form>
                 <div id="newsletterMsg" class="text-sm mt-2 hidden"></div>
@@ -46,15 +53,15 @@
                 <div class="space-y-3.5">
                     <div class="flex gap-3">
                         <i class="fas fa-phone text-gold-500 text-base mt-1 w-4 shrink-0"></i>
-                        <p class="text-white/55 text-sm">{{ getSetting('phone') ?: '+965 123 456 789' }}</p>
+                        <p class="text-white/70 text-sm">{{ getSetting('phone') ?: '+965 123 456 789' }}</p>
                     </div>
                     <div class="flex gap-3">
                         <i class="fas fa-envelope text-gold-500 text-base mt-1 w-4 shrink-0"></i>
-                        <p class="text-white/55 text-sm">{{ getSetting('email') ?: 'info@fourislands.com' }}</p>
+                        <p class="text-white/70 text-sm">{{ getSetting('email') ?: 'info@fourislands.com' }}</p>
                     </div>
                     <div class="flex gap-3">
                         <i class="fas fa-map-marker-alt text-gold-500 text-base mt-1 w-4 shrink-0"></i>
-                        <p class="text-white/55 text-sm">{{ getSetting('address') ?: 'Kuwait - Qibla' }}</p>
+                        <p class="text-white/70 text-sm">{{ getSetting('address') ?: 'Kuwait - Qibla' }}</p>
                     </div>
                 </div>
             </div>
@@ -62,8 +69,8 @@
     </div>
     <div class="border-t border-white/5 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p class="text-white/35 text-xs">&copy; {{ date('Y') }} Four Islands EST. @lang('translate.all_rights')</p>
-            <p class="text-white/35 text-xs"><a href="#" class="hover:text-gold-500 transition-colors">@lang('translate.privacy_policy')</a></p>
+            <p class="text-white/60 text-xs">&copy; {{ date('Y') }} Four Islands EST. @lang('translate.all_rights')</p>
+            <p class="text-white/60 text-xs"><a href="#" class="hover:text-gold-500 transition-colors">@lang('translate.privacy_policy')</a></p>
         </div>
     </div>
 </footer>

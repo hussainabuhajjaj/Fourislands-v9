@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="card p-8 sm:p-12">
                 <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 mb-6">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-                    <a href="{{ route('home.home') }}" class="text-sm text-sky-700 hover:text-sky-800 font-semibold no-underline">
+                    <a href="{{ route('home.home') }}" class="text-sm text-sky-700 dark:text-sky-300 hover:text-sky-800 dark:hover:text-sky-200 font-semibold no-underline">
                         &larr; @lang('translate.back_to_home')
                     </a>
                 </div>

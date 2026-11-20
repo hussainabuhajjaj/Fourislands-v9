@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
                 <span class="section-tag">@lang('translate.our_products')</span>
@@ -34,14 +34,14 @@
                             </div>
                         @endif
                         <div class="p-6">
-                            <h5 class="font-heading text-base font-bold text-navy-950 dark:text-white group-hover:text-sky-700 transition-colors mb-2">{{ $item->title }}</h5>
+                            <h5 class="font-heading text-base font-bold text-navy-950 dark:text-white group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors mb-2">{{ $item->title }}</h5>
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ Str::limit(strip_tags($item->description), 100) }}</p>
                         </div>
                     </a>
                 @empty
                     <div class="col-span-full text-center py-16">
                         <svg class="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                        <p class="text-slate-500">@lang('translate.no_data')</p>
+                        <p class="text-slate-600">@lang('translate.no_data')</p>
                     </div>
                 @endforelse
             </div>

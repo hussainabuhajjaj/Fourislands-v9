@@ -1,6 +1,6 @@
 @php($isRtl = app()->getLocale() === 'ar')
 
-<div id="scrollTop" class="fixed {{ $isRtl ? 'left-4 sm:left-8' : 'right-4 sm:right-8' }} bottom-4 sm:bottom-8 w-11 h-11 rounded-full bg-white dark:bg-navy-800 shadow-lg z-[9999] flex items-center justify-center opacity-0 invisible translate-y-3 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:bg-gold-500">
+<div id="scrollTop" class="fixed {{ $isRtl ? 'left-4 sm:left-8' : 'right-4 sm:right-8' }} bottom-4 sm:bottom-8 w-11 h-11 rounded-full bg-surface dark:bg-navy-800 shadow-lg z-[9999] flex items-center justify-center opacity-0 invisible translate-y-3 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:bg-gold-500">
     <i class="fas fa-arrow-up text-navy-900 dark:text-white text-sm"></i>
 </div>
 

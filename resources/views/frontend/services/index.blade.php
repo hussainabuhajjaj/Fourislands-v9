@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
                 <span class="section-tag">@lang('translate.what_we_do')</span>
@@ -38,9 +38,9 @@
                             </div>
                         @endif
                         <div class="p-6">
-                            <h5 class="font-heading text-lg font-bold text-navy-950 dark:text-white group-hover:text-sky-700 transition-colors mb-2">{{ $item->title }}</h5>
+                            <h5 class="font-heading text-lg font-bold text-navy-950 dark:text-white group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors mb-2">{{ $item->title }}</h5>
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ $item->short_description ?: Str::limit(strip_tags($item->description), 120) }}</p>
-                            <span class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-sky-700 group-hover:text-sky-800 transition-colors">
+                            <span class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-sky-700 dark:text-sky-300 group-hover:text-sky-800 dark:hover:text-sky-200 transition-colors">
                                 @lang('translate.read_more')
                                 <svg class="h-3.5 w-3.5 rtl:rotate-180 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                             </span>
@@ -49,7 +49,7 @@
                 @empty
                     <div class="col-span-full text-center py-16">
                         <i class="fas fa-concierge-bell text-4xl text-slate-300 dark:text-slate-600 mb-4"></i>
-                        <p class="text-slate-500">@lang('translate.no_data')</p>
+                        <p class="text-slate-600">@lang('translate.no_data')</p>
                     </div>
                 @endforelse
             </div>

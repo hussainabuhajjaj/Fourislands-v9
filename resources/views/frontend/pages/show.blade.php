@@ -9,7 +9,7 @@
     </section>
     <section class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-navy-600 leading-relaxed space-y-4">
+            <div class="max-w-4xl mx-auto text-navy-600 dark:text-slate-300 leading-relaxed space-y-4">
                 {!! $item->content !!}
             </div>
         </div>

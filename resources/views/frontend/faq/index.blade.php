@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <span class="section-tag">@lang('translate.faq')</span>
@@ -74,24 +74,24 @@
                         type="text"
                         id="faqSearch"
                         placeholder="@lang('translate.search') @lang('translate.faq')..."
-                        class="form-input pl-12 pr-4 py-3.5 text-base rounded-xl border-2 border-slate-200 dark:border-slate-700 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10 bg-white dark:bg-slate-900 transition-all"
+                        class="form-input pl-12 pr-4 py-3.5 text-base rounded-xl border-2 border-slate-200 dark:border-slate-700 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10 bg-surface dark:bg-slate-900 transition-all"
                         autocomplete="off"
                     >
                     <button
                         id="faqSearchClear"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-600 text-slate-500 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-500 transition-colors flex items-center justify-center hidden"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-alt dark:bg-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-500 transition-colors flex items-center justify-center hidden"
                         aria-label="Clear search"
                     >
                         <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
                     </button>
                 </div>
-                <div id="faqResultCount" class="mt-3 text-sm text-slate-500 dark:text-slate-400 text-center"></div>
+                <div id="faqResultCount" class="mt-3 text-sm text-slate-600 dark:text-slate-400 text-center"></div>
             </div>
 
             <div id="faqList">
                 @forelse($faqs as $faq)
                     <div class="card mb-4 overflow-hidden faq-item" data-question="{{ strtolower($faq->question) }}" data-answer="{{ strtolower(strip_tags($faq->answer)) }}">
-                        <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-white dark:bg-surface hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors cursor-pointer border-0 font-inherit" aria-expanded="false">
+                        <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-left bg-surface dark:bg-surface hover:bg-alt dark:hover:bg-slate-800/40 transition-colors cursor-pointer border-0 font-inherit" aria-expanded="false">
                             <span class="faq-question-text font-heading text-base sm:text-lg font-semibold text-navy-950 dark:text-white pr-4">{{ $faq->question }}</span>
                             <svg class="faq-chevron w-5 h-5 text-sky-700 dark:text-sky-300 shrink-0 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -108,7 +108,7 @@
                 @empty
                     <div class="text-center py-16" id="faqEmpty">
                         <i class="fas fa-question-circle text-4xl text-slate-300 dark:text-slate-600 mb-4"></i>
-                        <p class="text-slate-500">@lang('translate.no_data')</p>
+                        <p class="text-slate-600">@lang('translate.no_data')</p>
                     </div>
                 @endforelse
             </div>
@@ -118,7 +118,7 @@
                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
                 </svg>
                 <p class="text-lg font-semibold text-slate-600 dark:text-slate-300 mb-2">@lang('translate.no_results')</p>
-                <p class="text-sm text-slate-500 dark:text-slate-400">@lang('translate.search_min')</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400">@lang('translate.search_min')</p>
             </div>
         </div>
     </section>

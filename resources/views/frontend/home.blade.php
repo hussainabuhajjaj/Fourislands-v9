@@ -56,11 +56,11 @@
                     </div>
                     <div class="mt-5 grid grid-cols-2 gap-3">
                         <div class="metric-tile">
-                            <div class="text-xs font-bold uppercase tracking-[1.4px] text-slate-500 dark:text-slate-400">@lang('translate.services_offered')</div>
+                            <div class="text-xs font-bold uppercase tracking-[1.4px] text-slate-600 dark:text-slate-400">@lang('translate.services_offered')</div>
                             <div class="mt-2 text-3xl font-extrabold text-navy-950 dark:text-white">{{ $services->count() }}+</div>
                         </div>
                         <div class="metric-tile">
-                            <div class="text-xs font-bold uppercase tracking-[1.4px] text-slate-500 dark:text-slate-400">@lang('translate.partners_global')</div>
+                            <div class="text-xs font-bold uppercase tracking-[1.4px] text-slate-600 dark:text-slate-400">@lang('translate.partners_global')</div>
                             <div class="mt-2 text-3xl font-extrabold text-navy-950 dark:text-white">{{ $partners->count() }}+</div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
     </section>
 
     @if($partners->count() > 0)
-        <section class="border-b border-slate-200 bg-white py-8 dark:border-white/10 dark:bg-slate-950">
+        <section class="border-b border-slate-200 bg-surface py-8 dark:border-white/10 dark:bg-slate-950">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-6 lg:grid-cols-[240px_1fr] lg:items-center">
                     <div>
@@ -78,9 +78,9 @@
                     </div>
                     <div class="clients-carousel owl-carousel min-w-0">
                         @foreach($partners as $partner)
-                            <div class="flex h-24 flex-col items-center justify-center rounded-md border border-slate-200 bg-slate-50 px-4 py-4 grayscale transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:grayscale-0 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
+                            <div class="flex h-24 flex-col items-center justify-center rounded-md border border-slate-200 bg-alt px-4 py-4 grayscale transition-all duration-300 hover:-translate-y-0.5 hover:bg-surface hover:grayscale-0 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                 <img src="{{ asset(@$partner->image) }}" alt="{{ @$partner->name }}" class="max-h-10 w-auto object-contain" onerror="this.onerror=null;this.src='{{ asset('NewFront/img/clients/1.png') }}'">
-                                <h6 class="mt-2 text-center text-xs font-bold text-slate-500 dark:text-slate-400">{{ @$partner->name }}</h6>
+                                <h6 class="mt-2 text-center text-xs font-bold text-slate-600 dark:text-slate-400">{{ @$partner->name }}</h6>
                             </div>
                         @endforeach
                     </div>
@@ -90,7 +90,7 @@
     @endif
 
     @if($services->count() > 0)
-        <section class="bg-slate-50 py-16 dark:bg-slate-900 sm:py-24">
+        <section class="bg-alt py-16 dark:bg-slate-900 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
                     <div class="lg:col-span-7">
@@ -113,9 +113,9 @@
                                     <span class="icon-box">
                                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-8 8h10a2 2 0 0 0 2-2V8l-6-6H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z"/></svg>
                                     </span>
-                                    <svg class="h-5 w-5 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-sky-700 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
+                                    <svg class="h-5 w-5 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-sky-700 dark:group-hover:text-sky-300 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                                 </div>
-                                <h3 class="text-xl font-extrabold text-navy-950 transition-colors group-hover:text-sky-700 dark:text-white">{{ $item->title }}</h3>
+                                <h3 class="text-xl font-extrabold text-navy-950 transition-colors group-hover:text-sky-700 dark:group-hover:text-sky-300 dark:text-white">{{ $item->title }}</h3>
                                 <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ $item->short_description ?: Str::limit(strip_tags($item->description), 120) }}</p>
                             </div>
                         </a>
@@ -126,7 +126,7 @@
     @endif
 
     @if($about)
-        <section class="bg-white py-16 dark:bg-slate-950 sm:py-24">
+        <section class="bg-surface py-16 dark:bg-slate-950 sm:py-24">
             <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
                 <div class="lg:col-span-5">
                     <div class="image-frame lg:sticky lg:top-32">
@@ -169,7 +169,7 @@
     @endif
 
     @if($products->count() > 0)
-        <section class="bg-slate-50 py-16 dark:bg-slate-900 sm:py-24">
+        <section class="bg-alt py-16 dark:bg-slate-900 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="section-tag justify-center before:hidden">@lang('translate.our_products')</span>
@@ -186,7 +186,7 @@
                                 <img class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset('NewFront/img/services/1.jpg') }}" alt="{{ $item->title }}">
                             @endif
                             <div class="p-5">
-                                <h3 class="text-base font-extrabold leading-6 text-navy-950 transition-colors group-hover:text-sky-700 dark:text-white">{{ Str::limit($item->title, 48) }}</h3>
+                                <h3 class="text-base font-extrabold leading-6 text-navy-950 transition-colors group-hover:text-sky-700 dark:group-hover:text-sky-300 dark:text-white">{{ Str::limit($item->title, 48) }}</h3>
                                 <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{{ Str::limit(strip_tags($item->description), 72) }}</p>
                             </div>
                         </a>
@@ -197,7 +197,7 @@
     @endif
 
     @if($testimonials->count() > 0)
-        <section class="bg-white dark:bg-slate-950 py-16 sm:py-24">
+        <section class="bg-surface dark:bg-slate-950 py-16 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="section-tag justify-center before:hidden">@lang('translate.testimonials')</span>
@@ -208,13 +208,13 @@
                     @foreach($testimonials as $t)
                         <div class="card p-6 sm:p-8 mx-2">
                             <div class="flex items-center gap-4 mb-4">
-                                <span class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700">
+                                <span class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700 dark:text-sky-300">
                                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
                                 </span>
                                 <div>
                                     <h4 class="font-heading font-bold text-navy-950 dark:text-white">{{ $t->name }}</h4>
                                     @if($t->position || $t->company)
-                                        <p class="text-xs text-slate-500">{{ $t->position }}{{ $t->position && $t->company ? ', ' : '' }}{{ $t->company }}</p>
+                                        <p class="text-xs text-slate-600">{{ $t->position }}{{ $t->position && $t->company ? ', ' : '' }}{{ $t->company }}</p>
                                     @endif
                                 </div>
                                 @if($t->rating)

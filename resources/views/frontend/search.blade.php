@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <section class="py-16 sm:py-24 bg-white dark:bg-slate-950">
+    <section class="py-16 sm:py-24 bg-surface dark:bg-slate-950">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <form action="{{ route('home.search') }}" method="GET" class="mb-10">
                 <div class="flex gap-3">
@@ -28,7 +28,7 @@
             </form>
 
             @if($total > 0)
-                <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">{{ $total }} @lang('translate.results_found')</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mb-8">{{ $total }} @lang('translate.results_found')</p>
 
                 @if($services->count() > 0)
                     <div class="mb-10">
@@ -88,7 +88,7 @@
             @else
                 <div class="text-center py-16">
                     <svg class="w-16 h-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <p class="text-slate-500 text-lg mb-2">@lang('translate.no_results')</p>
+                    <p class="text-slate-600 text-lg mb-2">@lang('translate.no_results')</p>
                     <p class="text-sm text-slate-400">@lang('translate.try_different_keywords')</p>
                 </div>
             @endif
