@@ -2,14 +2,12 @@
 set -euo pipefail
 
 RELEASE="fourislands-$(date +%Y%m%d-%H%M).tar.gz"
-EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=deploy/invoice-ninja --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=.DS_Store"
+EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=deploy/invoice-ninja --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=.DS_Store --exclude=*.tar.gz"
 
 echo "==> 1. Installing PHP dependencies (no dev)..."
 composer install --no-dev --no-interaction --optimize-autoloader
 
-echo "==> 2. Building frontend assets..."
-npm install --silent
-npm run production
+echo "==> 2. Frontend assets are committed in public/ (NewFront, panelAssets, css/app.css, js/app.js) - no build step needed."
 
 echo "==> 3. Optimizing Laravel..."
 php artisan view:cache
