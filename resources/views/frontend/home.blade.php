@@ -255,7 +255,7 @@
                 <div class="glass-panel rounded-lg p-5 sm:p-8">
                     <form id="homeLeadForm" method="post" action="{{ route('home.contacts.store') }}">
                         @csrf
-                        <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                        <div class="sr-only" aria-hidden="true">
                             <label for="home_company_website">Company website</label>
                             <input id="home_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
                         </div>

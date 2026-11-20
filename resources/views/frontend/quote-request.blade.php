@@ -34,11 +34,11 @@
                         <form id="quoteRequestForm" method="post" action="{{ route('home.quote-requests.store') }}">
                             @csrf
                             <input type="hidden" name="_form_token" value="{{ encrypt(['time' => now()->timestamp, 'form' => 'quote-request']) }}">
-                            <div style="position:absolute;left:-99999px;opacity:0;height:0;overflow:hidden;pointer-events:none" aria-hidden="true">
+                            <div class="sr-only" aria-hidden="true">
                                 <label for="quote_company_website">Company website</label>
                                 <input id="quote_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
                             </div>
-                            <div style="position:absolute;left:-99999px;opacity:0;height:0;overflow:hidden;pointer-events:none" aria-hidden="true">
+                            <div class="sr-only" aria-hidden="true">
                                 <label for="quote_fax_number">Fax number</label>
                                 <input id="quote_fax_number" type="text" name="fax_number" tabindex="-1" autocomplete="off">
                             </div>
@@ -187,7 +187,7 @@
                             <div class="space-y-2">
                                 @foreach($faqs as $faq)
                                     <div class="faq-item border-b border-slate-100 dark:border-slate-800 last:border-0 pb-2 last:pb-0">
-                                        <button class="faq-toggle w-full flex items-center justify-between py-2 text-left" aria-expanded="false">
+                                        <button class="faq-toggle w-full flex items-center justify-between py-2 text-start" aria-expanded="false">
                                             <span class="text-xs font-semibold text-navy-950 dark:text-white pr-4">{{ $faq->question }}</span>
                                             <svg class="faq-chevron w-3 h-3 text-slate-400 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                         </button>

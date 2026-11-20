@@ -139,7 +139,7 @@
         var bar = document.createElement('div');
         bar.className = 'cookie-bar';
         bar.innerHTML = '<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">' +
-            '<p class="text-white/70 text-sm text-center sm:text-left">@lang("translate.cookie_desc")</p>' +
+            '<p class="text-white/70 text-sm text-center sm:text-start">@lang("translate.cookie_desc")</p>' +
             '<div class="flex gap-2 shrink-0">' +
                 '<button id="cookieAccept" class="bg-gold-500 text-navy-900 rounded-lg px-5 py-2 text-sm font-semibold hover:bg-gold-400 transition-colors cursor-pointer border-0">@lang("translate.cookie_accept")</button>' +
             '</div>' +

@@ -146,7 +146,7 @@
                         <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">@lang('translate.lead_desc')</p>
                         <form id="serviceSideQuoteForm" method="post" action="{{ route('home.quote-requests.store') }}">
                             @csrf
-                            <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                            <div class="sr-only" aria-hidden="true">
                                 <label for="sq_company_website">Company website</label>
                                 <input id="sq_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
                             </div>
@@ -216,7 +216,7 @@
                 <div class="space-y-3">
                     @foreach($faqs as $faq)
                         <div class="faq-item card p-0 overflow-hidden">
-                            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+                            <button class="faq-toggle w-full flex items-center justify-between p-5 text-start" aria-expanded="false">
                                 <span class="font-heading font-bold text-sm text-navy-950 dark:text-white">{{ $faq->question }}</span>
                                 <svg class="faq-chevron w-4 h-4 text-slate-400 shrink-0 ml-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                             </button>
@@ -242,7 +242,7 @@
                 <div class="glass-panel rounded-lg p-6 sm:p-8">
                     <form id="serviceBottomQuoteForm" method="post" action="{{ route('home.quote-requests.store') }}">
                         @csrf
-                        <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                        <div class="sr-only" aria-hidden="true">
                             <label for="sbq_company_website">Company website</label>
                             <input id="sbq_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
                         </div>

@@ -1,6 +1,6 @@
 @php($isRtl = app()->getLocale() === 'ar')
 
-<div id="scrollTop" class="fixed {{ $isRtl ? 'left-4 sm:left-8' : 'right-4 sm:right-8' }} bottom-4 sm:bottom-8 w-11 h-11 rounded-full bg-surface dark:bg-navy-800 shadow-lg z-[9999] flex items-center justify-center opacity-0 invisible translate-y-3 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:bg-gold-500">
+<div id="scrollTop" class="fixed end-4 sm:end-8 bottom-4 sm:bottom-8 w-11 h-11 rounded-full bg-surface dark:bg-navy-800 shadow-lg z-[9999] flex items-center justify-center opacity-0 invisible translate-y-3 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:bg-gold-500">
     <i class="fas fa-arrow-up text-navy-900 dark:text-white text-sm"></i>
 </div>
 
@@ -11,7 +11,7 @@
 <nav id="navbar" class="fixed inset-x-0 top-0 z-[9990]">
     <div class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
         <div class="nav-shell relative flex h-[64px] items-center justify-center rounded-lg px-4 lg:h-[72px] lg:px-5">
-            <div class="nav-brand-slot hidden max-w-[28%] sm:block {{ $isRtl ? 'nav-brand-slot-rtl text-right' : 'nav-brand-slot-ltr text-left' }}">
+            <div class="nav-brand-slot hidden max-w-[28%] sm:block {{ $isRtl ? 'nav-brand-slot-rtl' : 'nav-brand-slot-ltr' }} text-start">
                 <a class="inline-flex items-center gap-3 no-underline {{ $isRtl ? 'flex-row-reverse' : '' }}" href="{{ route('home.home') }}" aria-label="@lang('translate.home')">
                     <img id="navLogo" class="h-8 w-auto shrink-0 lg:h-10" src="{{ asset('logo.png') }}" alt="Four Islands">
                     <span class="hidden min-w-0 leading-tight sm:block">

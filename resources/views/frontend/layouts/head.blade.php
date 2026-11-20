@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {{ app()->getLocale() == 'ar' ? 'dir="rtl" lang="ar"' : 'lang="en"' }}>
+<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() === 'ar') dir="rtl" @endif>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

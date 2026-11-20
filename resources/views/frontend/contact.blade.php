@@ -75,11 +75,11 @@
                         <form id="contactForm" method="post" action="{{ route('home.contacts.store') }}">
                             @csrf
                             <input type="hidden" name="_form_token" value="{{ encrypt(['time' => now()->timestamp, 'form' => 'contact']) }}">
-                            <div style="position:absolute;left:-99999px;opacity:0;height:0;overflow:hidden;pointer-events:none" aria-hidden="true">
+                            <div class="sr-only" aria-hidden="true">
                                 <label for="contact_company_website">Company website</label>
                                 <input id="contact_company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
                             </div>
-                            <div style="position:absolute;left:-99999px;opacity:0;height:0;overflow:hidden;pointer-events:none" aria-hidden="true">
+                            <div class="sr-only" aria-hidden="true">
                                 <label for="contact_fax_number">Fax number</label>
                                 <input id="contact_fax_number" type="text" name="fax_number" tabindex="-1" autocomplete="off">
                             </div>
