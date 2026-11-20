@@ -128,7 +128,7 @@
                         <ul class="space-y-0">
                             @foreach($allservices as $item)
                                 <li class="py-2.5 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                                    <a href="{{ route('home.services.show', $item->id) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $services->id ? 'text-sky-700 font-semibold' : '' }}">
+                                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors {{ $item->id == $services->id ? 'text-sky-700 font-semibold' : '' }}">
                                         @if($item->icon)
                                             <i class="{{ $item->icon }} text-sky-600 w-4 text-center"></i>
                                         @else

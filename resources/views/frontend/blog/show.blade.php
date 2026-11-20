@@ -52,7 +52,7 @@
                         <h4 class="font-heading text-base font-bold text-navy-950 dark:text-white mb-4 pb-3 border-b border-slate-200 dark:border-slate-700">@lang('translate.categories')</h4>
                         <ul class="space-y-2">
                             @foreach($categories as $cat)
-                                <li><a href="{{ route('home.blog.category', $cat->slug) }}" class="text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors">{{ $cat->name }}</a></li>
+                                <li><a href="{{ route('home.blog.category', ['slug' => $cat->slug]) }}" class="text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 transition-colors">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
                                         <img class="w-14 h-14 rounded-md object-cover shrink-0" src="{{ asset($r->image) }}" alt="{{ $r->title }}">
                                     @endif
                                     <div>
-                                        <a href="{{ route('home.blog.show', $r->slug) }}" class="text-sm font-semibold text-navy-950 dark:text-white hover:text-sky-700 transition-colors leading-snug">{{ Str::limit($r->title, 40) }}</a>
+                                        <a href="{{ route('home.blog.show', ['slug' => $r->slug]) }}" class="text-sm font-semibold text-navy-950 dark:text-white hover:text-sky-700 transition-colors leading-snug">{{ Str::limit($r->title, 40) }}</a>
                                         <p class="text-xs text-slate-500 mt-1">{{ $r->published_at->format('M d, Y') }}</p>
                                     </div>
                                 </li>

@@ -1,0 +1,32 @@
+# Staging overlay for upgrade QA.
+#
+# Reuses the production image from docker-compose.yml and adds a one-shot
+# import of a production database dump (empty database otherwise).
+#
+#   1. mkdir -p docker/staging/db-init
+#   2. copy the production dump into docker/staging/db-init/  (e.g. fourislands.sql.gz)
+#   3. docker compose -f docker-compose.yml -f docker-compose.staging.yml down -v
+#   4. docker compose -f docker-compose.yml -f docker-compose.staging.yml up -d --build
+#
+# The init scripts only run when the dbdata volume is empty, hence "down -v".
+
+services:
+  app:
+    environment:
+      - APP_ENV=staging
+      - APP_DEBUG=true
+      - APP_KEY=${APP_KEY}
+      - APP_URL=${APP_URL:-http://localhost:8080}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE:-fourislands}
+      - DB_USERNAME=${DB_USERNAME:-fourislands}
+      - DB_PASSWORD=${DB_PASSWORD:-secret}
+
+  db:
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/staging/db-init:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  dbdata:

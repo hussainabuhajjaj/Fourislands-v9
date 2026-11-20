@@ -66,9 +66,17 @@ Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('new
 Route::get('/unsubscribe/{email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
 Route::get('/newsletter', [NewsletterController::class, 'welcome']);
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' =>
-['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
+// Cache-safe localized routes. The prefix is a placeholder resolved per
+// request by App\Http\Middleware\SetLocaleFromRoute; it must never be the
+// result of LaravelLocalization::setLocale() (that freezes one locale into
+// the compiled route table, so route:cache would drop the other languages).
+$supportedLocales = array_keys(config('laravellocalization.supportedLocales', []));
 
+if ($supportedLocales !== []) {
+    Route::pattern('locale', implode('|', $supportedLocales));
+}
+
+$localizedRoutes = function () {
     Route::group(['as' => 'home.'], function () {
         Route::get('/', [FrontController::class, 'home'])->name('home');
         Route::get('notification', [FrontController::class, 'notification']);
@@ -108,4 +116,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' =>
             Route::get('{slug}', [BlogController::class, 'show'])->name('show');
         });
     });
-});
+};
+
+$localizedMiddleware = ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'];
+
+// Default locale URLs have no prefix. These routes only exist so that
+// /about, /products/... etc. can be matched; the "plain." name prefix keeps
+// them from colliding with the canonical routes used by route() and by the
+// route cache.
+Route::group([
+    'as' => 'plain.',
+    'middleware' => $localizedMiddleware,
+], $localizedRoutes);
+
+// Locale-prefixed URLs. The {locale?} placeholder is filled at request time by
+// App\Http\Middleware\SetLocaleFromRoute via URL::defaults(), so route('home.*')
+// stays locale aware while the compiled route table is identical for every
+// locale (which is what makes route:cache safe).
+Route::group([
+    'prefix' => '{locale?}',
+    'middleware' => $localizedMiddleware,
+], $localizedRoutes);
