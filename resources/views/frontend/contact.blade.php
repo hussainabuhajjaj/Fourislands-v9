@@ -35,8 +35,8 @@
             @if($branches && $branches->count() > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
                     @foreach($branches as $branch)
-                        <div class="card p-6 sm:p-8 text-center hover:border-sky-200 hover:shadow-md transition-all">
-                            <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mx-auto mb-4">
+                        <div class="card p-6 sm:p-8 text-center hover:border-gold-200 hover:shadow-md transition-all">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-md bg-gold-50 text-gold-800 dark:bg-gold-400/10 dark:text-gold-400 text-lg mx-auto mb-4">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">{{ $branch->city }}</h6>
@@ -49,21 +49,21 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
                 <div>
                     <div class="card p-6 sm:p-8">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-gold-50 text-gold-800 dark:bg-gold-400/10 dark:text-gold-400 text-lg mb-4">
                             <i class="fas fa-phone"></i>
                         </div>
                         <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.phone')</h6>
                         <p class="text-sm text-slate-600 dark:text-slate-300">{{ getSetting('phone') ?: '+965 123 456 789' }}</p>
                     </div>
                     <div class="card p-6 sm:p-8 mt-4">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-gold-50 text-gold-800 dark:bg-gold-400/10 dark:text-gold-400 text-lg mb-4">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.email')</h6>
                         <p class="text-sm text-slate-600 dark:text-slate-300">{{ getSetting('email') ?: 'info@fourislands.com' }}</p>
                     </div>
                     <div class="card p-6 sm:p-8 mt-4">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 text-lg mb-4">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-md bg-gold-50 text-gold-800 dark:bg-gold-400/10 dark:text-gold-400 text-lg mb-4">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h6 class="font-heading text-base mb-2 text-navy-950 dark:text-white">@lang('translate.address')</h6>

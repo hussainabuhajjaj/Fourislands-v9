@@ -34,9 +34,9 @@ module.exports = {
           900: '#4e3d1d',
         },
         brand: {
-          blue: '#2563EB',
-          'blue-hover': '#1D4ED8',
-          'blue-light': '#DBEAFE',
+          gold: '#C5A35A',
+          'gold-hover': '#D4B978',
+          'gold-light': '#F5EDD6',
         },
         /* Theme-aware surfaces: light values are white / near-white,
            dark values are defined by the CSS variables in app.css. */

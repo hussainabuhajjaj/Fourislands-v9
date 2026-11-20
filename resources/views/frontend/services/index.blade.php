@@ -29,8 +29,8 @@
                         @if(@$item->image)
                             <img class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset(@$item->image) }}" alt="{{ $item->title }}" onerror="this.src='{{ asset('NewFront/img/1.jpg') }}'">
                         @elseif($item->icon)
-                            <div class="w-full h-52 bg-gradient-to-br from-sky-50 to-sky-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center transition-colors">
-                                <i class="{{ $item->icon }} text-5xl text-sky-400 dark:text-sky-500"></i>
+                            <div class="w-full h-52 bg-gradient-to-br from-gold-50 to-gold-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center transition-colors">
+                                <i class="{{ $item->icon }} text-5xl text-gold-600 dark:text-gold-400"></i>
                             </div>
                         @else
                             <div class="w-full h-52 bg-gradient-to-br from-navy-100 dark:from-slate-800 to-navy-200 dark:to-slate-700 flex items-center justify-center">
@@ -38,9 +38,9 @@
                             </div>
                         @endif
                         <div class="p-6">
-                            <h5 class="font-heading text-lg font-bold text-navy-950 dark:text-white group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors mb-2">{{ $item->title }}</h5>
+                            <h5 class="font-heading text-lg font-bold text-navy-950 dark:text-white group-hover:text-gold-700 dark:group-hover:text-gold-400 transition-colors mb-2">{{ $item->title }}</h5>
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ $item->short_description ?: Str::limit(strip_tags($item->description), 120) }}</p>
-                            <span class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-sky-700 dark:text-sky-300 group-hover:text-sky-800 dark:hover:text-sky-200 transition-colors">
+                            <span class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-gold-700 dark:text-gold-400 group-hover:text-gold-800 dark:hover:text-gold-300 transition-colors">
                                 @lang('translate.read_more')
                                 <svg class="h-3.5 w-3.5 rtl:rotate-180 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                             </span>

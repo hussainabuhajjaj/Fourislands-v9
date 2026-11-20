@@ -22,7 +22,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { navy: { 900: '#0F172A', 800: '#1E293B', 600: '#475569', 300: '#94A3B8', 200: '#CBD5E1', 50: '#F1F5F9' }, gold: { 500: '#C5A35A', 400: '#D4B978' }, brand: { blue: '#2563EB', 'blue-hover': '#1D4ED8' } }, fontFamily: { heading: ['{{ $isArabic ? 'Tajawal' : 'Playfair Display' }}', '{{ $isArabic ? 'sans-serif' : 'serif' }}'], body: ['{{ $isArabic ? 'Tajawal' : 'Inter' }}', 'sans-serif'] } } }
+            theme: { extend: { colors: { navy: { 900: '#0F172A', 800: '#1E293B', 600: '#475569', 300: '#94A3B8', 200: '#CBD5E1', 50: '#F1F5F9' }, gold: { 500: '#C5A35A', 400: '#D4B978' }, brand: { gold: '#C5A35A', 'gold-hover': '#D4B978' } }, fontFamily: { heading: ['{{ $isArabic ? 'Tajawal' : 'Playfair Display' }}', '{{ $isArabic ? 'sans-serif' : 'serif' }}'], body: ['{{ $isArabic ? 'Tajawal' : 'Inter' }}', 'sans-serif'] } } }
         }
     </script>
     <style>

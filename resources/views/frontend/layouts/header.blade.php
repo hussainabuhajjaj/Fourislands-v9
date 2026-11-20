@@ -49,7 +49,7 @@
                 </a>
             </div>
 
-            <button id="mobileToggle" class="mobile-toggle {{ $isRtl ? 'mobile-toggle-rtl' : 'mobile-toggle-ltr' }} lg:hidden" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
+            <button id="mobileToggle" class="mobile-toggle {{ $isRtl ? 'mobile-toggle-rtl' : 'mobile-toggle-ltr' }} lg:hidden" type="button" aria-label="@lang('translate.open_menu')" aria-expanded="false" aria-controls="mobileMenu">
                 <span class="mobile-toggle-line"></span>
                 <span class="mobile-toggle-line"></span>
                 <span class="mobile-toggle-line"></span>
@@ -57,8 +57,11 @@
         </div>
     </div>
 
-    <div id="mobileMenu" class="fixed inset-0 z-40 hidden lg:hidden">
-        <div class="flex min-h-full flex-col items-center justify-center gap-6 px-6 text-center">
+    <div id="mobileMenu" class="fixed inset-0 z-40 hidden lg:hidden" role="dialog" aria-modal="true" aria-label="@lang('translate.navigation_menu')">
+        <button id="mobileClose" class="mobile-close" type="button" aria-label="@lang('translate.close_menu')">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="mobile-menu-panel flex min-h-full flex-col items-center justify-center gap-6 overflow-y-auto px-6 py-24 text-center" data-menu-backdrop>
             <a class="mobile-link" href="{{ route('home.home') }}">@lang('translate.home')</a>
             <a class="mobile-link" href="{{ route('home.home') }}/about">@lang('translate.about')</a>
             <a class="mobile-link" href="{{ route('home.services.index') }}">@lang('translate.services')</a>

@@ -42,7 +42,7 @@
             <div class="flex items-center gap-3 mb-2">
                 @if($services->icon)
                     <span class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center">
-                        <i class="{{ $services->icon }} text-xl text-sky-300"></i>
+                        <i class="{{ $services->icon }} text-xl text-gold-300"></i>
                     </span>
                 @endif
                 <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white">{{ $services->title }}</h1>
@@ -102,7 +102,7 @@
                             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 @foreach($services->features as $feature)
                                     <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-                                        <svg class="w-5 h-5 text-sky-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <svg class="w-5 h-5 text-gold-700 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                         {{ $feature }}
                                     </li>
                                 @endforeach
@@ -115,7 +115,7 @@
                             @lang('translate.get_quote')
                             <svg class="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6"/></svg>
                         </a>
-                        <a href="{{ route('home.contacts.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-sky-700 hover:text-sky-700 dark:hover:text-sky-300 transition-all">
+                        <a href="{{ route('home.contacts.index') }}" class="inline-flex items-center gap-2 bg-transparent text-navy-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-lg px-5 py-3 text-sm font-semibold hover:border-gold-600 hover:text-gold-700 dark:hover:text-gold-400 transition-all">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.272.527-.74.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
                             @lang('translate.contact_us')
                         </a>
@@ -128,9 +128,9 @@
                         <ul class="space-y-0">
                             @foreach($allservices as $item)
                                 <li class="py-2.5 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-300 transition-colors {{ $item->id == $services->id ? 'text-sky-700 font-semibold' : '' }}">
+                                    <a href="{{ route('home.services.show', ['id' => $item->id]) }}" class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 hover:text-gold-700 dark:hover:text-gold-400 transition-colors {{ $item->id == $services->id ? 'text-gold-700 font-semibold' : '' }}">
                                         @if($item->icon)
-                                            <i class="{{ $item->icon }} text-sky-600 w-4 text-center"></i>
+                                            <i class="{{ $item->icon }} text-gold-700 w-4 text-center"></i>
                                         @else
                                             <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                         @endif
@@ -181,7 +181,7 @@
                     @foreach($testimonials as $t)
                         <div class="card p-6 sm:p-8 mx-2">
                             <div class="flex items-center gap-4 mb-4">
-                                <span class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700 dark:text-sky-300 shrink-0">
+                                <span class="w-14 h-14 rounded-full bg-gold-100 dark:bg-gold-400/10 flex items-center justify-center text-gold-700 dark:text-gold-400 shrink-0">
                                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
                                 </span>
                                 <div>
@@ -233,7 +233,7 @@
     <section class="bg-slate-950 py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-                <span class="section-tag text-sky-200 before:bg-gold-500">@lang('translate.get_in_touch')</span>
+                <span class="section-tag text-gold-300 before:bg-gold-500">@lang('translate.get_in_touch')</span>
                 <h2 class="section-title text-white">@lang('translate.ready_start')</h2>
                 <p class="mt-4 text-base leading-8 text-slate-300">@lang('translate.lead_desc')</p>
             </div>

@@ -55,7 +55,7 @@
     @endif
 
     <section class="py-16 sm:py-24 bg-navy-900 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,rgba(197,163,90,0.1)_0%,transparent_50%),radial-gradient(circle_at_80%_60%,rgba(37,99,235,0.08)_0%,transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,rgba(197,163,90,0.1)_0%,transparent_50%),radial-gradient(circle_at_80%_60%,rgba(197,163,90,0.08)_0%,transparent_50%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-[1]">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <div class="text-center">

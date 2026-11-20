@@ -276,5 +276,8 @@ return [
 	'phone_example' => 'الهاتف / واتساب',
 	'your_name' => 'اسمك',
 	'whatsapp_quote_message' => 'مرحبًا! أود طلب عرض سعر.',
+	'close_menu' => 'إغلاق القائمة',
+	'open_menu' => 'فتح القائمة',
+	'navigation_menu' => 'قائمة التنقل',
 
 ];

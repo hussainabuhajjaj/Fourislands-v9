@@ -10,14 +10,14 @@
 }
 .faq-item.is-open {
     border-color: rgb(3 105 161 / 0.3);
-    box-shadow: 0 4px 20px -8px rgba(3, 105, 161, 0.15);
+    box-shadow: 0 4px 20px -8px rgba(197, 163, 90, 0.15);
 }
 .faq-item.is-open .faq-toggle {
     background-color: rgb(248 250 252);
 }
 .dark .faq-item.is-open {
-    border-color: rgba(14, 165, 233, 0.25);
-    box-shadow: 0 4px 20px -8px rgba(14, 165, 233, 0.12);
+    border-color: rgba(212, 185, 120, 0.25);
+    box-shadow: 0 4px 20px -8px rgba(212, 185, 120, 0.12);
 }
 .dark .faq-item.is-open .faq-toggle {
     background-color: rgba(255, 255, 255, 0.03);
@@ -93,7 +93,7 @@
                     <div class="card mb-4 overflow-hidden faq-item" data-question="{{ strtolower($faq->question) }}" data-answer="{{ strtolower(strip_tags($faq->answer)) }}">
                         <button class="faq-toggle w-full flex items-center justify-between p-5 sm:p-6 text-start bg-surface dark:bg-surface hover:bg-alt dark:hover:bg-slate-800/40 transition-colors cursor-pointer border-0 font-inherit" aria-expanded="false">
                             <span class="faq-question-text font-heading text-base sm:text-lg font-semibold text-navy-950 dark:text-white pr-4">{{ $faq->question }}</span>
-                            <svg class="faq-chevron w-5 h-5 text-sky-700 dark:text-sky-300 shrink-0 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                            <svg class="faq-chevron w-5 h-5 text-gold-700 dark:text-gold-400 shrink-0 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
                             </svg>
                         </button>

@@ -35,7 +35,7 @@
                         <h3 class="font-heading text-xl font-bold text-navy-950 dark:text-white mb-4">@lang('translate.services')</h3>
                         <div class="space-y-3">
                             @foreach($services as $service)
-                                <a href="{{ route('home.services.show', ['id' => $service->id]) }}" class="card block p-4 hover:border-sky-200 dark:hover:border-sky-700 transition-colors no-underline">
+                                <a href="{{ route('home.services.show', ['id' => $service->id]) }}" class="card block p-4 hover:border-gold-200 dark:hover:border-gold-500 transition-colors no-underline">
                                     <h4 class="font-semibold text-navy-950 dark:text-white">{{ $service->title }}</h4>
                                     <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{{ Str::limit(strip_tags($service->description), 150) }}</p>
                                 </a>
@@ -49,7 +49,7 @@
                         <h3 class="font-heading text-xl font-bold text-navy-950 dark:text-white mb-4">@lang('translate.products')</h3>
                         <div class="space-y-3">
                             @foreach($products as $product)
-                                <a href="{{ route('home.products.show', ['id' => $product->id]) }}" class="card block p-4 hover:border-sky-200 dark:hover:border-sky-700 transition-colors no-underline">
+                                <a href="{{ route('home.products.show', ['id' => $product->id]) }}" class="card block p-4 hover:border-gold-200 dark:hover:border-gold-500 transition-colors no-underline">
                                     <h4 class="font-semibold text-navy-950 dark:text-white">{{ $product->title }}</h4>
                                     <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{{ Str::limit(strip_tags($product->description), 150) }}</p>
                                 </a>
@@ -63,7 +63,7 @@
                         <h3 class="font-heading text-xl font-bold text-navy-950 dark:text-white mb-4">@lang('translate.blog')</h3>
                         <div class="space-y-3">
                             @foreach($posts as $post)
-                                <a href="{{ route('home.blog.show', ['slug' => $post->slug]) }}" class="card block p-4 hover:border-sky-200 dark:hover:border-sky-700 transition-colors no-underline">
+                                <a href="{{ route('home.blog.show', ['slug' => $post->slug]) }}" class="card block p-4 hover:border-gold-200 dark:hover:border-gold-500 transition-colors no-underline">
                                     <h4 class="font-semibold text-navy-950 dark:text-white">{{ $post->title }}</h4>
                                     <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{{ Str::limit(strip_tags($post->excerpt ?: $post->content), 150) }}</p>
                                 </a>
@@ -77,7 +77,7 @@
                         <h3 class="font-heading text-xl font-bold text-navy-950 dark:text-white mb-4">@lang('translate.faq')</h3>
                         <div class="space-y-3">
                             @foreach($faqs as $faq)
-                                <a href="{{ route('home.faq') }}" class="card block p-4 hover:border-sky-200 dark:hover:border-sky-700 transition-colors no-underline">
+                                <a href="{{ route('home.faq') }}" class="card block p-4 hover:border-gold-200 dark:hover:border-gold-500 transition-colors no-underline">
                                     <h4 class="font-semibold text-navy-950 dark:text-white">{{ $faq->question }}</h4>
                                     <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{{ Str::limit(strip_tags($faq->answer), 150) }}</p>
                                 </a>

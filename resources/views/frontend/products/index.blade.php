@@ -29,12 +29,12 @@
                         @if(@$item->image)
                             <img class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" src="{{ asset(@$item->image) }}" alt="{{ $item->title }}" onerror="this.src='{{ asset('NewFront/img/1.jpg') }}'">
                         @else
-                            <div class="w-full h-52 bg-gradient-to-br from-sky-50 to-sky-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center">
-                                <svg class="w-12 h-12 text-sky-400 dark:text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                            <div class="w-full h-52 bg-gradient-to-br from-gold-50 to-gold-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center">
+                                <svg class="w-12 h-12 text-gold-600 dark:text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                             </div>
                         @endif
                         <div class="p-6">
-                            <h5 class="font-heading text-base font-bold text-navy-950 dark:text-white group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors mb-2">{{ $item->title }}</h5>
+                            <h5 class="font-heading text-base font-bold text-navy-950 dark:text-white group-hover:text-gold-700 dark:group-hover:text-gold-400 transition-colors mb-2">{{ $item->title }}</h5>
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ Str::limit(strip_tags($item->description), 100) }}</p>
                         </div>
                     </a>

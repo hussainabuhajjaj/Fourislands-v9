@@ -28,7 +28,7 @@
 
                     <div class="flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-6">
                         @if($post->category)
-                            <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 font-semibold text-xs">{{ $post->category->name }}</span>
+                            <span class="px-3 py-1 rounded-full bg-gold-50 text-gold-800 dark:bg-gold-400/10 dark:text-gold-400 font-semibold text-xs">{{ $post->category->name }}</span>
                         @endif
                         @if($post->published_at)
                             <span>{{ $post->published_at->isoFormat('LL') }}</span>
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-700">
-                        <a href="{{ route('home.blog.index') }}" class="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 dark:text-sky-300 hover:text-sky-800 dark:hover:text-sky-200 transition-colors">
+                        <a href="{{ route('home.blog.index') }}" class="inline-flex items-center gap-2 text-sm font-semibold text-gold-700 dark:text-gold-400 hover:text-gold-800 dark:hover:text-gold-300 transition-colors">
                             <svg class="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                             @lang('translate.back_to_blog')
                         </a>
@@ -52,7 +52,7 @@
                         <h4 class="font-heading text-base font-bold text-navy-950 dark:text-white mb-4 pb-3 border-b border-slate-200 dark:border-slate-700">@lang('translate.categories')</h4>
                         <ul class="space-y-2">
                             @foreach($categories as $cat)
-                                <li><a href="{{ route('home.blog.category', ['slug' => $cat->slug]) }}" class="text-sm text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-300 transition-colors">{{ $cat->name }}</a></li>
+                                <li><a href="{{ route('home.blog.category', ['slug' => $cat->slug]) }}" class="text-sm text-slate-600 dark:text-slate-300 hover:text-gold-700 dark:hover:text-gold-400 transition-colors">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
                                         <img class="w-14 h-14 rounded-md object-cover shrink-0" src="{{ asset($r->image) }}" alt="{{ $r->title }}">
                                     @endif
                                     <div>
-                                        <a href="{{ route('home.blog.show', ['slug' => $r->slug]) }}" class="text-sm font-semibold text-navy-950 dark:text-white hover:text-sky-700 dark:hover:text-sky-300 transition-colors leading-snug">{{ Str::limit($r->title, 40) }}</a>
+                                        <a href="{{ route('home.blog.show', ['slug' => $r->slug]) }}" class="text-sm font-semibold text-navy-950 dark:text-white hover:text-gold-700 dark:hover:text-gold-400 transition-colors leading-snug">{{ Str::limit($r->title, 40) }}</a>
                                         <p class="text-xs text-slate-600 mt-1">{{ $r->published_at->format('M d, Y') }}</p>
                                     </div>
                                 </li>

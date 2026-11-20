@@ -45,7 +45,7 @@
 
                             <div class="space-y-6">
                                 <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sky-700 text-white text-xs font-bold shrink-0">1</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gold-500 text-navy-900 text-xs font-bold shrink-0">1</span>
                                     <span class="ml-2 text-sm font-bold text-navy-950 dark:text-white uppercase tracking-wider">@lang('translate.service_needed')</span>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sky-700 text-white text-xs font-bold shrink-0">2</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gold-500 text-navy-900 text-xs font-bold shrink-0">2</span>
                                     <span class="ml-2 text-sm font-bold text-navy-950 dark:text-white uppercase tracking-wider">@lang('translate.company_details')</span>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sky-700 text-white text-xs font-bold shrink-0">3</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gold-500 text-navy-900 text-xs font-bold shrink-0">3</span>
                                     <span class="ml-2 text-sm font-bold text-navy-950 dark:text-white uppercase tracking-wider">@lang('translate.contact_info')</span>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -94,7 +94,7 @@
                                 </div>
 
                                 <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sky-700 text-white text-xs font-bold shrink-0">4</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gold-500 text-navy-900 text-xs font-bold shrink-0">4</span>
                                     <span class="ml-2 text-sm font-bold text-navy-950 dark:text-white uppercase tracking-wider">@lang('translate.your_message')</span>
                                 </div>
                                 <div>
@@ -119,8 +119,8 @@
                         <h4 class="font-heading text-base font-bold text-navy-950 dark:text-white mb-4">@lang('translate.why_choose_us')</h4>
                         <ul class="space-y-4">
                             <li class="flex gap-3">
-                                <span class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4 text-sky-700 dark:text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span class="w-8 h-8 rounded-full bg-gold-100 dark:bg-gold-400/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-gold-700 dark:text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </span>
                                 <div>
                                     <h5 class="text-sm font-bold text-navy-950 dark:text-white">@lang('translate.est_since')</h5>
@@ -128,8 +128,8 @@
                                 </div>
                             </li>
                             <li class="flex gap-3">
-                                <span class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4 text-sky-700 dark:text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span class="w-8 h-8 rounded-full bg-gold-100 dark:bg-gold-400/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-gold-700 dark:text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </span>
                                 <div>
                                     <h5 class="text-sm font-bold text-navy-950 dark:text-white">@lang('translate.global_reach')</h5>
@@ -137,8 +137,8 @@
                                 </div>
                             </li>
                             <li class="flex gap-3">
-                                <span class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-4 h-4 text-sky-700 dark:text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span class="w-8 h-8 rounded-full bg-gold-100 dark:bg-gold-400/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4 text-gold-700 dark:text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </span>
                                 <div>
                                     <h5 class="text-sm font-bold text-navy-950 dark:text-white">@lang('translate.fast_response')</h5>
@@ -157,8 +157,8 @@
                         @endphp
                         <div class="space-y-3">
                             <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}"
-                               class="flex items-center gap-3 p-3 rounded-lg bg-alt dark:bg-slate-800 no-underline hover:bg-sky-50 dark:hover:bg-sky-500/10 transition-colors">
-                                <span class="w-9 h-9 rounded-full bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center text-sky-700 dark:text-sky-300">
+                               class="flex items-center gap-3 p-3 rounded-lg bg-alt dark:bg-slate-800 no-underline hover:bg-gold-50 dark:hover:bg-gold-400/10 transition-colors">
+                                <span class="w-9 h-9 rounded-full bg-gold-100 dark:bg-gold-400/10 flex items-center justify-center text-gold-700 dark:text-gold-400">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.272.527-.74.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
                                 </span>
                                 <div>
@@ -197,7 +197,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <a href="{{ route('home.faq') }}" class="block text-center text-xs font-semibold text-sky-700 dark:text-sky-300 mt-3 no-underline hover:text-sky-800 dark:hover:text-sky-200">
+                            <a href="{{ route('home.faq') }}" class="block text-center text-xs font-semibold text-gold-700 dark:text-gold-400 mt-3 no-underline hover:text-gold-800 dark:hover:text-gold-300">
                                 @lang('translate.view_all_faq') &rarr;
                             </a>
                         </div>

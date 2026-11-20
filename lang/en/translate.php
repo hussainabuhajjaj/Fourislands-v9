@@ -271,5 +271,8 @@ return [
 	'phone_example' => 'Phone / WhatsApp',
 	'your_name' => 'Your name',
 	'whatsapp_quote_message' => 'Hello! I would like to get a quote.',
+	'close_menu' => 'Close menu',
+	'open_menu' => 'Open menu',
+	'navigation_menu' => 'Navigation menu',
 
 ];

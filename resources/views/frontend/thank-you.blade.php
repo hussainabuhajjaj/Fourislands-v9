@@ -47,14 +47,14 @@
                         @lang('translate.chat_whatsapp')
                     </a>
                     <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}"
-                       class="inline-flex items-center justify-center gap-2 rounded-lg bg-sky-700 hover:bg-sky-800 text-white px-6 py-3.5 text-sm font-bold transition-all no-underline">
+                       class="inline-flex items-center justify-center gap-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-navy-900 px-6 py-3.5 text-sm font-bold transition-all no-underline">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.272.527-.74.417-1.173L6.963 3.102A1.125 1.125 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
                         @lang('translate.call_us')
                     </a>
                 </div>
 
                 <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-                    <a href="{{ route('home.home') }}" class="text-sm text-sky-700 dark:text-sky-300 hover:text-sky-800 dark:hover:text-sky-200 font-semibold no-underline">
+                    <a href="{{ route('home.home') }}" class="text-sm text-gold-700 dark:text-gold-400 hover:text-gold-800 dark:hover:text-gold-300 font-semibold no-underline">
                         &larr; @lang('translate.back_to_home')
                     </a>
                 </div>

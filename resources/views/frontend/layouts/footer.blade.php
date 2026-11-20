@@ -1,5 +1,5 @@
 <footer class="bg-navy-900 dark:bg-navy-950 relative">
-    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold-500 via-brand-blue to-gold-500"></div>
+    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold-500 via-gold-500 to-gold-500"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
             <div class="lg:col-span-4">
