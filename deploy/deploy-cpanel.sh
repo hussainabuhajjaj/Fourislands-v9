@@ -2,17 +2,17 @@
 set -euo pipefail
 
 RELEASE="fourislands-$(date +%Y%m%d-%H%M).tar.gz"
-EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=deploy/invoice-ninja --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=.DS_Store --exclude=*.tar.gz"
+EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=deploy/invoice-ninja --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=bootstrap/cache/config.php --exclude=.DS_Store --exclude=*.tar.gz"
 
 echo "==> 1. Installing PHP dependencies (no dev)..."
 composer install --no-dev --no-interaction --optimize-autoloader
 
 echo "==> 2. Frontend assets are committed in public/ (NewFront, panelAssets, css/app.css, js/app.js) - no build step needed."
 
-echo "==> 3. Optimizing Laravel..."
+echo "==> 3. Optimizing Laravel (config cache is created on the server after .env is configured)..."
+php artisan optimize:clear
 php artisan view:cache
 php artisan route:cache
-php artisan config:cache
 php artisan event:cache
 
 echo "==> 4. Generating release archive..."
@@ -36,6 +36,7 @@ echo "  # 3. Set up .env"
 echo "  cp .env.example .env"
 echo "  nano .env    # Set DB, APP_URL, APP_KEY, etc."
 echo "  php artisan key:generate"
+echo "  php artisan optimize    # builds config/route/view/event caches from the server .env"
 echo ""
 echo "  # 4. Fix permissions"
 echo "  chmod -R 775 storage bootstrap/cache"
