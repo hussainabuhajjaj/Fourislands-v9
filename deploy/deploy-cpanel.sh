@@ -2,7 +2,7 @@
 set -euo pipefail
 
 RELEASE="fourislands-$(date +%Y%m%d-%H%M).tar.gz"
-EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=deploy/invoice-ninja --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=bootstrap/cache/config.php --exclude=.DS_Store --exclude=*.tar.gz"
+EXCLUDE="--exclude=node_modules --exclude=.git --exclude=.env --exclude=./deploy --exclude=./docker --exclude=./Dockerfile --exclude=./Dockerfile.dev --exclude=./docker-compose*.yml --exclude=./Makefile --exclude=./tests --exclude=./phpunit.xml --exclude=./.phpunit.result.cache --exclude=./package.json --exclude=./package-lock.json --exclude=./webpack.mix.js --exclude=./vite.config.js --exclude=./postcss.config.js --exclude=./tailwind.config.js --exclude=./.editorconfig --exclude=./.styleci.yml --exclude=./.gitattributes --exclude=./.env.docker.example --exclude=storage/logs/* --exclude=storage/framework/cache/data/* --exclude=storage/framework/sessions/* --exclude=storage/framework/views/* --exclude=bootstrap/cache/config.php --exclude=.DS_Store --exclude=*.tar.gz"
 
 echo "==> 1. Installing PHP dependencies (no dev)..."
 composer install --no-dev --no-interaction --optimize-autoloader
@@ -31,6 +31,7 @@ echo "  cd ~/public_html"
 echo ""
 echo "  # 2. Extract the archive"
 echo "  tar -xzf $RELEASE"
+echo "  mkdir -p storage/framework/views storage/framework/sessions storage/framework/cache/data storage/logs bootstrap/cache"
 echo ""
 echo "  # 3. Set up .env"
 echo "  cp .env.example .env"
